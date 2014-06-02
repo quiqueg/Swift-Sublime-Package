@@ -1,0 +1,157 @@
+# [PackageDev] target_format: plist, source_format: yaml, ext: tmLanguage
+# [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
+---
+name: Swift
+scopeName: source.swift
+fileTypes: [s]
+uuid: 7efa1168-97c3-4433-8dd7-15b99bf3bb53
+keyEquivalent: ^~S
+
+patterns:
+- include: '#comments'
+- include: '#strings'
+- include: '#storage-type'
+- include: '#switch-control'
+- include: '#loop-control'
+- include: '#if-else-control'
+- include: '#return'
+- include: '#special-keyword'
+- include: '#class-function'
+- include: '#primitive-type'
+- include: '#collection-type'
+- include: '#boolean'
+- include: '#number'
+- include: '#import'
+
+repository:
+
+# Switch blocks
+  switch-control:
+    name: keyword.control.swift
+    match: \b(switch|case|default)\b
+
+# Loops
+  loop-control:
+    name: keyword.control.swift
+    match: \b(while|do|for|in)\b
+
+# If-else controls
+  if-else-control:
+    name: keyword.control.swift
+    match: \b(if|else)\b
+
+# Storage types
+  storage-type:
+    name: storage.type.swift
+    match: \b(var|func|let|class|enum|struct|protocol|extension|typealias)\b
+
+# Return
+  return:
+    name: keyword.control.swift
+    match: \b(return)\b
+
+# Special keywords
+  special-keyword:
+    name: constant.language.swift
+    match: \b(self|super)\b
+
+# Primitive values
+  boolean:
+    name: keyword.constant.boolean.swift
+    match: \b(true|false)\b
+
+  number:
+    name: constant.numeric.swift
+    match: (?:[\-+])?\d+(?:\.\d+)?\b
+
+# Property functions
+  class-function:
+    name: keyword.swift
+    match: \b(init|get|set|willSet|didSet|override)
+
+# Type names
+  primitive-type:
+    comment: Primitive types
+    name: storage.type.swift
+    match: \b(Int|Float|Double|String|Bool)\b
+
+  collection-type:
+    comment: Collection types
+    match: \b(Array|Dictionary)\b
+    name: storage.type.swift
+
+# Strings
+  strings:
+    comment: Quoted strings
+    name: string.quoted.swift
+    patterns:
+    - include: '#single-quoted-string'
+    - include: '#double-quoted-string'
+
+  single-quoted-string:
+    comment: Single-quoted string
+    name: string.quoted.single.swift
+    begin: \'
+    end: \'
+    patterns:
+    - match: \\.
+      name: constant.character.escape.swift
+    - match: .*?
+
+  double-quoted-string:
+    comment: Double-quoted string
+    name: string.quoted.double.swift
+    begin: \"
+    end: \"
+    patterns:
+    - match: \\.
+      name: constant.character.escape.swift
+    - match: .*?
+
+
+# Comments
+  comments:
+    comment: All comment types
+    patterns:
+    - include: '#documentation-comment'
+    - include: '#block-comment'
+    - include: '#in-line-comment'
+
+  documentation-comment:
+    comment: Documentation comments
+    name: comment.block.documentation.swift
+    begin: /\*\*
+    end: \*/
+    beginCaptures:
+      '0': { name: punctuation.definition.comment.block.documentation.begin.swift }
+    endCaptures:
+      '0': { name: punctuation.definition.comment.block.documentation.end.swift }
+
+  block-comment:
+    comment: Block level comments
+    name: comment.block.swift
+    begin: /\*
+    end: \*/
+    beginCaptures:
+      '0': { name: punctuation.definition.comment.block.begin.swift }
+    endCaptures:
+      '0': { name: punctuation.definition.comment.block.end.swift }
+
+  in-line-comment:
+    comment: In-line comments
+    name: comment.line.double-slash.swift
+    match: (//).*
+    captures:
+      '1': { name: punctuation.definition.comment.line.double-slash.swift }
+
+
+# import
+  import:
+    comment: Import statement
+    name: meta.import.swift
+    match: \b(import)\s+(\w+)
+    captures:
+      '1': { name: keyword.other.import.swift }
+      '2': { name: support.type.module.import.swift }
+
+...

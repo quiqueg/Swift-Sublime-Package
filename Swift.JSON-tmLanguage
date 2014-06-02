@@ -1,0 +1,212 @@
+{
+    "repository": {
+        "strings": {
+            "name": "string.quoted.swift", 
+            "comment": "Quoted strings", 
+            "patterns": [
+                {
+                    "include": "#single-quoted-string"
+                }, 
+                {
+                    "include": "#double-quoted-string"
+                }
+            ]
+        }, 
+        "in-line-comment": {
+            "name": "comment.line.double-slash.swift", 
+            "comment": "In-line comments", 
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.comment.line.double-slash.swift"
+                }
+            }, 
+            "match": "(//).*"
+        }, 
+        "primitive-type": {
+            "name": "storage.type.swift", 
+            "comment": "Primitive types", 
+            "match": "\\b(Int|Float|Double|String|Bool)\\b"
+        }, 
+        "single-quoted-string": {
+            "name": "string.quoted.single.swift", 
+            "begin": "\\'", 
+            "end": "\\'", 
+            "patterns": [
+                {
+                    "name": "constant.character.escape.swift", 
+                    "match": "\\\\."
+                }, 
+                {
+                    "match": ".*?"
+                }
+            ], 
+            "comment": "Single-quoted string"
+        }, 
+        "collection-type": {
+            "name": "storage.type.swift", 
+            "comment": "Collection types", 
+            "match": "\\b(Array|Dictionary)\\b"
+        }, 
+        "import": {
+            "name": "meta.import.swift", 
+            "comment": "Import statement", 
+            "captures": {
+                "1": {
+                    "name": "keyword.other.import.swift"
+                }, 
+                "2": {
+                    "name": "support.type.module.import.swift"
+                }
+            }, 
+            "match": "\\b(import)\\s+(\\w+)"
+        }, 
+        "number": {
+            "name": "constant.numeric.swift", 
+            "match": "(?:[\\-+])?\\d+(?:\\.\\d+)?\\b"
+        }, 
+        "class-function": {
+            "name": "keyword.swift", 
+            "match": "\\b(init|get|set|willSet|didSet|override)"
+        }, 
+        "return": {
+            "name": "keyword.control.swift", 
+            "match": "\\b(return)\\b"
+        }, 
+        "if-else-control": {
+            "name": "keyword.control.swift", 
+            "match": "\\b(if|else)\\b"
+        }, 
+        "double-quoted-string": {
+            "name": "string.quoted.double.swift", 
+            "begin": "\\\"", 
+            "end": "\\\"", 
+            "patterns": [
+                {
+                    "name": "constant.character.escape.swift", 
+                    "match": "\\\\."
+                }, 
+                {
+                    "match": ".*?"
+                }
+            ], 
+            "comment": "Double-quoted string"
+        }, 
+        "boolean": {
+            "name": "keyword.constant.boolean.swift", 
+            "match": "\\b(true|false)\\b"
+        }, 
+        "switch-control": {
+            "name": "keyword.control.swift", 
+            "match": "\\b(switch|case|default)\\b"
+        }, 
+        "storage-type": {
+            "name": "storage.type.swift", 
+            "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b"
+        }, 
+        "comments": {
+            "comment": "All comment types", 
+            "patterns": [
+                {
+                    "include": "#documentation-comment"
+                }, 
+                {
+                    "include": "#block-comment"
+                }, 
+                {
+                    "include": "#in-line-comment"
+                }
+            ]
+        }, 
+        "documentation-comment": {
+            "end": "\\*/", 
+            "name": "comment.block.documentation.swift", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.documentation.end.swift"
+                }
+            }, 
+            "comment": "Documentation comments", 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.documentation.begin.swift"
+                }
+            }, 
+            "begin": "/\\*\\*"
+        }, 
+        "block-comment": {
+            "end": "\\*/", 
+            "name": "comment.block.swift", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.end.swift"
+                }
+            }, 
+            "comment": "Block level comments", 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.begin.swift"
+                }
+            }, 
+            "begin": "/\\*"
+        }, 
+        "loop-control": {
+            "name": "keyword.control.swift", 
+            "match": "\\b(while|do|for|in)\\b"
+        }, 
+        "special-keyword": {
+            "name": "constant.language.swift", 
+            "match": "\\b(self|super)\\b"
+        }
+    }, 
+    "uuid": "7efa1168-97c3-4433-8dd7-15b99bf3bb53", 
+    "keyEquivalent": "^~S", 
+    "patterns": [
+        {
+            "include": "#comments"
+        }, 
+        {
+            "include": "#strings"
+        }, 
+        {
+            "include": "#storage-type"
+        }, 
+        {
+            "include": "#switch-control"
+        }, 
+        {
+            "include": "#loop-control"
+        }, 
+        {
+            "include": "#if-else-control"
+        }, 
+        {
+            "include": "#return"
+        }, 
+        {
+            "include": "#special-keyword"
+        }, 
+        {
+            "include": "#class-function"
+        }, 
+        {
+            "include": "#primitive-type"
+        }, 
+        {
+            "include": "#collection-type"
+        }, 
+        {
+            "include": "#boolean"
+        }, 
+        {
+            "include": "#number"
+        }, 
+        {
+            "include": "#import"
+        }
+    ], 
+    "scopeName": "source.swift", 
+    "fileTypes": [
+        "s"
+    ], 
+    "name": "Swift"
+}
