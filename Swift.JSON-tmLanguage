@@ -206,7 +206,7 @@
     ], 
     "scopeName": "source.swift", 
     "fileTypes": [
-        "s"
+        "swift"
     ], 
     "name": "Swift"
 }

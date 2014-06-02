@@ -3,7 +3,7 @@
 ---
 name: Swift
 scopeName: source.swift
-fileTypes: [s]
+fileTypes: [swift]
 uuid: 7efa1168-97c3-4433-8dd7-15b99bf3bb53
 keyEquivalent: ^~S
 
