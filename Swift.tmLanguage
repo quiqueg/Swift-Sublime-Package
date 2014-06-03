@@ -62,6 +62,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#optional-type</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#boolean</string>
 		</dict>
 		<dict>
@@ -85,6 +89,43 @@
 			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+|\-|\*|\/)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.arithmetic.swift</string>
+		</dict>
+		<key>array-type</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(Array)(&lt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.array.swift</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.array.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.array.end.swift</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.array.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
 		</dict>
 		<key>assignment-operator</key>
 		<dict>
@@ -145,10 +186,23 @@
 		<dict>
 			<key>comment</key>
 			<string>Collection types</string>
-			<key>match</key>
-			<string>\b(Array|Dictionary)\b</string>
-			<key>name</key>
-			<string>storage.type.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#array-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#dictionary-type</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(Array|Dictionary)\b</string>
+					<key>name</key>
+					<string>support.type.swift</string>
+				</dict>
+			</array>
 		</dict>
 		<key>comments</key>
 		<dict>
@@ -221,6 +275,43 @@
 					<string>(?&lt;=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?=[\s)\]},;:])</string>
 					<key>name</key>
 					<string>keyword.operator.custom.binary.swift</string>
+				</dict>
+			</array>
+		</dict>
+		<key>dictionary-type</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(Dictionary)(&lt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.dictionary.swift</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.dictionary.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.dictionary.end.swift</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.dictionary.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
 				</dict>
 			</array>
 		</dict>
@@ -396,6 +487,43 @@
 				</dict>
 			</array>
 		</dict>
+		<key>optional-type</key>
+		<dict>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.optional.swift</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.optional.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.optional.end.swift</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b(Optional)(&lt;)</string>
+			<key>name</key>
+			<string>meta.optional.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
 		<key>overflow-operator</key>
 		<dict>
 			<key>match</key>
@@ -410,7 +538,7 @@
 			<key>match</key>
 			<string>\b(Int|Float|Double|String|Bool|Character)\b</string>
 			<key>name</key>
-			<string>storage.type.swift</string>
+			<string>support.type.swift</string>
 		</dict>
 		<key>range-operator</key>
 		<dict>

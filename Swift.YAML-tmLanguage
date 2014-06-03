@@ -20,6 +20,7 @@ patterns:
 - include: '#class-function'
 - include: '#primitive-type'
 - include: '#collection-type'
+- include: '#optional-type'
 - include: '#boolean'
 - include: '#number'
 - include: '#import'
@@ -60,7 +61,7 @@ repository:
     name: constant.language.swift
     match: \b(self|super)\b
 
-# Binary Operators
+# Operators
   operators:
     patterns:
     - include: '#comparative-operator'
@@ -162,16 +163,53 @@ repository:
     name: keyword.swift
     match: \b(init|get|set|willSet|didSet|override)
 
+
 # Type names
   primitive-type:
     comment: Primitive types
-    name: storage.type.swift
+    name: support.type.swift
     match: \b(Int|Float|Double|String|Bool|Character)\b
-
   collection-type:
     comment: Collection types
-    match: \b(Array|Dictionary)\b
-    name: storage.type.swift
+    patterns:
+    - include: '#array-type'
+    - include: '#dictionary-type'
+    - name: support.type.swift
+      match: \b(Array|Dictionary)\b
+  array-type:
+    name: meta.array.swift
+    begin: \b(Array)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.array.swift }
+      '2': { name: punctuation.array.begin.swift }
+    endCaptures:
+      '1': {name: punctuation.array.end.swift}
+    patterns:
+      - include: $self
+  dictionary-type:
+    name: meta.dictionary.swift
+    begin: \b(Dictionary)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.dictionary.swift }
+      '2': { name: punctuation.dictionary.begin.swift }
+    endCaptures:
+      '1': {name: punctuation.dictionary.end.swift}
+    patterns:
+      - include: $self
+  optional-type:
+    name: meta.optional.swift
+    match: \b(Optional)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.optional.swift }
+      '2': { name: punctuation.optional.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.optional.end.swift }
+    patterns:
+      - include: $self
+
 
 # Comments
   comments:
@@ -180,7 +218,6 @@ repository:
     - include: '#documentation-comment'
     - include: '#block-comment'
     - include: '#in-line-comment'
-
   documentation-comment:
     comment: Documentation comments
     name: comment.block.documentation.swift
@@ -190,7 +227,6 @@ repository:
       '0': { name: punctuation.definition.comment.block.documentation.begin.swift }
     endCaptures:
       '0': { name: punctuation.definition.comment.block.documentation.end.swift }
-
   block-comment:
     comment: Block level comments
     name: comment.block.swift
@@ -200,7 +236,6 @@ repository:
       '0': { name: punctuation.definition.comment.block.begin.swift }
     endCaptures:
       '0': { name: punctuation.definition.comment.block.end.swift }
-
   in-line-comment:
     comment: In-line comments
     name: comment.line.double-slash.swift

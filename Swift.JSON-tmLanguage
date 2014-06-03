@@ -42,6 +42,9 @@
             "include": "#collection-type"
         }, 
         {
+            "include": "#optional-type"
+        }, 
+        {
             "include": "#boolean"
         }, 
         {
@@ -56,6 +59,29 @@
     ], 
     "scopeName": "source.swift", 
     "repository": {
+        "array-type": {
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ], 
+            "end": "(>)", 
+            "beginCaptures": {
+                "1": {
+                    "name": "support.type.array.swift"
+                }, 
+                "2": {
+                    "name": "punctuation.array.begin.swift"
+                }
+            }, 
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.array.end.swift"
+                }
+            }, 
+            "begin": "\\b(Array)(<)", 
+            "name": "meta.array.swift"
+        }, 
         "arithmetic-operator": {
             "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(\\+|\\-|\\*|\\/)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.arithmetic.swift"
@@ -67,6 +93,29 @@
         "control-transfer-statement": {
             "match": "\\b(continue|break|fallthrough|return)\\b", 
             "name": "keyword.control.transfer.swift"
+        }, 
+        "dictionary-type": {
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ], 
+            "end": "(>)", 
+            "beginCaptures": {
+                "1": {
+                    "name": "support.type.dictionary.swift"
+                }, 
+                "2": {
+                    "name": "punctuation.dictionary.begin.swift"
+                }
+            }, 
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.dictionary.end.swift"
+                }
+            }, 
+            "begin": "\\b(Dictionary)(<)", 
+            "name": "meta.dictionary.swift"
         }, 
         "operator-keywords": {
             "match": "\\b(operator|prefix|infix|postfix)\\b", 
@@ -93,9 +142,19 @@
             ]
         }, 
         "collection-type": {
-            "comment": "Collection types", 
-            "match": "\\b(Array|Dictionary)\\b", 
-            "name": "storage.type.swift"
+            "patterns": [
+                {
+                    "include": "#array-type"
+                }, 
+                {
+                    "include": "#dictionary-type"
+                }, 
+                {
+                    "match": "\\b(Array|Dictionary)\\b", 
+                    "name": "support.type.swift"
+                }
+            ], 
+            "comment": "Collection types"
         }, 
         "boolean": {
             "match": "\\b(true|false)\\b", 
@@ -218,7 +277,7 @@
         "primitive-type": {
             "comment": "Primitive types", 
             "match": "\\b(Int|Float|Double|String|Bool|Character)\\b", 
-            "name": "storage.type.swift"
+            "name": "support.type.swift"
         }, 
         "operators": {
             "patterns": [
@@ -284,6 +343,29 @@
             }, 
             "begin": "/\\*\\*", 
             "name": "comment.block.documentation.swift"
+        }, 
+        "optional-type": {
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ], 
+            "end": "(>)", 
+            "beginCaptures": {
+                "1": {
+                    "name": "support.type.optional.swift"
+                }, 
+                "2": {
+                    "name": "punctuation.optional.begin.swift"
+                }
+            }, 
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.optional.end.swift"
+                }
+            }, 
+            "match": "\\b(Optional)(<)", 
+            "name": "meta.optional.swift"
         }, 
         "comparative-operator": {
             "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)((=|!)==?|(<|>)=?|~=)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
