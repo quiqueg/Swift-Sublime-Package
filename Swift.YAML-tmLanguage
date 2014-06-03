@@ -9,7 +9,7 @@ keyEquivalent: ^~S
 
 patterns:
 - include: '#comments'
-- include: '#strings'
+- include: '#literals'
 - include: '#storage-type'
 - include: '#loop-control'
 - include: '#conditional-statement'
@@ -109,6 +109,28 @@ repository:
     match: \b(operator|prefix|infix|postfix)\b
 
 # Literal Expressions
+  literals:
+    patterns:
+    - include: '#string-literal'
+    - include: '#special-literal'
+  string-literal:
+    name: string.quoted.double.swift
+    begin: \"
+    end: \"
+    patterns:
+    - name: constant.character.escape.swift
+      match: \\([0tnr\"\'\\]|x\h{2}|u\h{4}|U\h{8})
+    - contentName: meta.expression.swift
+      begin: \\\(
+      end: \)
+      beginCaptures:
+        '0': { name: punctuation.expression.begin.swift }
+      endCaptures:
+        '0': { name: punctuation.expression.end.swift }
+      patterns:
+      - include: $self
+    - match: (\"|\\)
+      name: invalid.illegal.swift
   special-literal:
     name: keyword.other.literal.swift
     match: \b__(FILE|LINE|COLUMN|FUNCTION)__\b
@@ -137,35 +159,6 @@ repository:
     comment: Collection types
     match: \b(Array|Dictionary)\b
     name: storage.type.swift
-
-# Strings
-  strings:
-    comment: Quoted strings
-    name: string.quoted.swift
-    patterns:
-    - include: '#single-quoted-string'
-    - include: '#double-quoted-string'
-
-  single-quoted-string:
-    comment: Single-quoted string
-    name: string.quoted.single.swift
-    begin: \'
-    end: \'
-    patterns:
-    - match: \\.
-      name: constant.character.escape.swift
-    - match: .*?
-
-  double-quoted-string:
-    comment: Double-quoted string
-    name: string.quoted.double.swift
-    begin: \"
-    end: \"
-    patterns:
-    - match: \\.
-      name: constant.character.escape.swift
-    - match: .*?
-
 
 # Comments
   comments:

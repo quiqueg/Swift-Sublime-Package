@@ -18,7 +18,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#strings</string>
+			<string>#literals</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -227,30 +227,6 @@
 			<key>name</key>
 			<string>comment.block.documentation.swift</string>
 		</dict>
-		<key>double-quoted-string</key>
-		<dict>
-			<key>begin</key>
-			<string>\"</string>
-			<key>comment</key>
-			<string>Double-quoted string</string>
-			<key>end</key>
-			<string>\"</string>
-			<key>name</key>
-			<string>string.quoted.double.swift</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\.</string>
-					<key>name</key>
-					<string>constant.character.escape.swift</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>.*?</string>
-				</dict>
-			</array>
-		</dict>
 		<key>if-else-statement</key>
 		<dict>
 			<key>match</key>
@@ -303,6 +279,20 @@
 			<string>(\+\+|\-\-)</string>
 			<key>name</key>
 			<string>keyword.operator.increment-or-decrement.swift</string>
+		</dict>
+		<key>literals</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string-literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#special-literal</string>
+				</dict>
+			</array>
 		</dict>
 		<key>logical-operator</key>
 		<dict>
@@ -404,30 +394,6 @@
 			<key>name</key>
 			<string>keyword.operator.remainder.swift</string>
 		</dict>
-		<key>single-quoted-string</key>
-		<dict>
-			<key>begin</key>
-			<string>\'</string>
-			<key>comment</key>
-			<string>Single-quoted string</string>
-			<key>end</key>
-			<string>\'</string>
-			<key>name</key>
-			<string>string.quoted.single.swift</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\.</string>
-					<key>name</key>
-					<string>constant.character.escape.swift</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>.*?</string>
-				</dict>
-			</array>
-		</dict>
 		<key>special-keyword</key>
 		<dict>
 			<key>match</key>
@@ -449,21 +415,58 @@
 			<key>name</key>
 			<string>storage.type.swift</string>
 		</dict>
-		<key>strings</key>
+		<key>string-literal</key>
 		<dict>
-			<key>comment</key>
-			<string>Quoted strings</string>
+			<key>begin</key>
+			<string>\"</string>
+			<key>end</key>
+			<string>\"</string>
 			<key>name</key>
-			<string>string.quoted.swift</string>
+			<string>string.quoted.double.swift</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>#single-quoted-string</string>
+					<key>match</key>
+					<string>\\([0tnr\"\'\\]|x\h{2}|u\h{4}|U\h{8})</string>
+					<key>name</key>
+					<string>constant.character.escape.swift</string>
 				</dict>
 				<dict>
-					<key>include</key>
-					<string>#double-quoted-string</string>
+					<key>begin</key>
+					<string>\\\(</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.expression.begin.swift</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>meta.expression.swift</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.expression.end.swift</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\"|\\)</string>
+					<key>name</key>
+					<string>invalid.illegal.swift</string>
 				</dict>
 			</array>
 		</dict>

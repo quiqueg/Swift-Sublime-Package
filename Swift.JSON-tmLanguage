@@ -9,7 +9,7 @@
             "include": "#comments"
         }, 
         {
-            "include": "#strings"
+            "include": "#literals"
         }, 
         {
             "include": "#storage-type"
@@ -56,28 +56,19 @@
     ], 
     "scopeName": "source.swift", 
     "repository": {
-        "double-quoted-string": {
-            "comment": "Double-quoted string", 
-            "patterns": [
-                {
-                    "match": "\\\\.", 
-                    "name": "constant.character.escape.swift"
-                }, 
-                {
-                    "match": ".*?"
-                }
-            ], 
-            "end": "\\\"", 
-            "begin": "\\\"", 
-            "name": "string.quoted.double.swift"
-        }, 
         "arithmetic-operator": {
             "match": "(\\+|\\-|\\*|\\/)", 
             "name": "keyword.operator.arithmetic.swift"
         }, 
-        "overflow-operator": {
-            "match": "\\&(\\+|\\-|\\*|\\/|%)", 
-            "name": "keyword.operator.overflow.swift"
+        "literals": {
+            "patterns": [
+                {
+                    "include": "#string-literal"
+                }, 
+                {
+                    "include": "#special-literal"
+                }
+            ]
         }, 
         "control-transfer-statement": {
             "match": "\\b(continue|break|fallthrough|return)\\b", 
@@ -111,21 +102,6 @@
             "match": "\\b(true|false)\\b", 
             "name": "keyword.constant.boolean.swift"
         }, 
-        "single-quoted-string": {
-            "comment": "Single-quoted string", 
-            "patterns": [
-                {
-                    "match": "\\\\.", 
-                    "name": "constant.character.escape.swift"
-                }, 
-                {
-                    "match": ".*?"
-                }
-            ], 
-            "end": "\\'", 
-            "begin": "\\'", 
-            "name": "string.quoted.single.swift"
-        }, 
         "range-operator": {
             "match": "\\.\\.(?:\\.)?", 
             "name": "keyword.operator.range.swift"
@@ -133,6 +109,10 @@
         "special-literal": {
             "match": "\\b__(FILE|LINE|COLUMN|FUNCTION)__\\b", 
             "name": "keyword.other.literal.swift"
+        }, 
+        "overflow-operator": {
+            "match": "\\&(\\+|\\-|\\*|\\/|%)", 
+            "name": "keyword.operator.overflow.swift"
         }, 
         "storage-type": {
             "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b", 
@@ -187,17 +167,40 @@
             "begin": "/\\*", 
             "name": "comment.block.swift"
         }, 
-        "strings": {
+        "string-literal": {
             "patterns": [
                 {
-                    "include": "#single-quoted-string"
+                    "match": "\\\\([0tnr\\\"\\'\\\\]|x\\h{2}|u\\h{4}|U\\h{8})", 
+                    "name": "constant.character.escape.swift"
                 }, 
                 {
-                    "include": "#double-quoted-string"
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ], 
+                    "end": "\\)", 
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.expression.begin.swift"
+                        }
+                    }, 
+                    "contentName": "meta.expression.swift", 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.expression.end.swift"
+                        }
+                    }, 
+                    "begin": "\\\\\\("
+                }, 
+                {
+                    "match": "(\\\"|\\\\)", 
+                    "name": "invalid.illegal.swift"
                 }
             ], 
-            "comment": "Quoted strings", 
-            "name": "string.quoted.swift"
+            "end": "\\\"", 
+            "begin": "\\\"", 
+            "name": "string.quoted.double.swift"
         }, 
         "loop-control": {
             "match": "\\b(while|do|for|in)\\b", 
