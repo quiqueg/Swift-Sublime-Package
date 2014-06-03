@@ -276,13 +276,13 @@
                     "end": "\\)", 
                     "beginCaptures": {
                         "0": {
-                            "name": "punctuation.expression.begin.swift"
+                            "name": "support.punctuation.expression.begin.swift"
                         }
                     }, 
                     "contentName": "meta.expression.swift", 
                     "endCaptures": {
                         "0": {
-                            "name": "punctuation.expression.end.swift"
+                            "name": "support.punctuation.expression.end.swift"
                         }
                     }, 
                     "begin": "\\\\\\("
@@ -290,11 +290,25 @@
                 {
                     "match": "(\\\"|\\\\)", 
                     "name": "invalid.illegal.swift"
+                }, 
+                {
+                    "match": ".", 
+                    "name": "string.quoted.double.swift"
                 }
             ], 
             "end": "\\\"", 
+            "beginCaptures": {
+                "0": {
+                    "name": "string.quoted.double.swift"
+                }
+            }, 
+            "endCaptures": {
+                "0": {
+                    "name": "string.quoted.double.swift"
+                }
+            }, 
             "begin": "\\\"", 
-            "name": "string.quoted.double.swift"
+            "name": "meta.literal.string.swift"
         }, 
         "loop-control": {
             "match": "\\b(while|do|for|in)\\b", 

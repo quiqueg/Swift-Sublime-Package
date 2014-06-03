@@ -620,10 +620,26 @@
 		<dict>
 			<key>begin</key>
 			<string>\"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.swift</string>
+				</dict>
+			</dict>
 			<key>end</key>
 			<string>\"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.swift</string>
+				</dict>
+			</dict>
 			<key>name</key>
-			<string>string.quoted.double.swift</string>
+			<string>meta.literal.string.swift</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -640,7 +656,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.expression.begin.swift</string>
+							<string>support.punctuation.expression.begin.swift</string>
 						</dict>
 					</dict>
 					<key>contentName</key>
@@ -652,7 +668,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.expression.end.swift</string>
+							<string>support.punctuation.expression.end.swift</string>
 						</dict>
 					</dict>
 					<key>patterns</key>
@@ -668,6 +684,12 @@
 					<string>(\"|\\)</string>
 					<key>name</key>
 					<string>invalid.illegal.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>.</string>
+					<key>name</key>
+					<string>string.quoted.double.swift</string>
 				</dict>
 			</array>
 		</dict>
