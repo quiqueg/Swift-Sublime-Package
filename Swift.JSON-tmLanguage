@@ -49,6 +49,9 @@
         }, 
         {
             "include": "#import"
+        }, 
+        {
+            "include": "#special-literal"
         }
     ], 
     "scopeName": "source.swift", 
@@ -126,6 +129,10 @@
         "range-operator": {
             "match": "\\.\\.(?:\\.)?", 
             "name": "keyword.operator.range.swift"
+        }, 
+        "special-literal": {
+            "match": "\\b__(FILE|LINE|COLUMN|FUNCTION)__\\b", 
+            "name": "keyword.other.literal.swift"
         }, 
         "storage-type": {
             "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b", 

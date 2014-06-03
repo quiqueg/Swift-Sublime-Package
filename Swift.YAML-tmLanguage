@@ -23,6 +23,7 @@ patterns:
 - include: '#boolean'
 - include: '#number'
 - include: '#import'
+- include: '#special-literal'
 
 repository:
 
@@ -106,6 +107,11 @@ repository:
   operator-keywords:
     name: storage.type.swift
     match: \b(operator|prefix|infix|postfix)\b
+
+# Literal Expressions
+  special-literal:
+    name: keyword.other.literal.swift
+    match: \b__(FILE|LINE|COLUMN|FUNCTION)__\b
 
 # Primitive values
   boolean:

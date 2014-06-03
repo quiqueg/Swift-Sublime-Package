@@ -72,6 +72,10 @@
 			<key>include</key>
 			<string>#import</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#special-literal</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -430,6 +434,13 @@
 			<string>\b(self|super)\b</string>
 			<key>name</key>
 			<string>constant.language.swift</string>
+		</dict>
+		<key>special-literal</key>
+		<dict>
+			<key>match</key>
+			<string>\b__(FILE|LINE|COLUMN|FUNCTION)__\b</string>
+			<key>name</key>
+			<string>keyword.other.literal.swift</string>
 		</dict>
 		<key>storage-type</key>
 		<dict>
