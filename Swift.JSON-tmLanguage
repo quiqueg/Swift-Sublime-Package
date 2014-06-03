@@ -51,13 +51,7 @@
             "include": "#boolean"
         }, 
         {
-            "include": "#number"
-        }, 
-        {
             "include": "#import"
-        }, 
-        {
-            "include": "#special-literal"
         }
     ], 
     "scopeName": "source.swift", 
@@ -174,6 +168,12 @@
         "literals": {
             "patterns": [
                 {
+                    "include": "#integer-literal"
+                }, 
+                {
+                    "include": "#floating-point-literal"
+                }, 
+                {
                     "include": "#string-literal"
                 }, 
                 {
@@ -210,6 +210,31 @@
             "match": "\\b(if|else)\\b", 
             "name": "keyword.control.conditional.swift"
         }, 
+        "integer-literal": {
+            "patterns": [
+                {
+                    "comment": null, 
+                    "match": "\\-?(0b[01][01_]*)", 
+                    "name": "constant.numeric.integer.binary.swift"
+                }, 
+                {
+                    "comment": null, 
+                    "match": "\\-?(0o[0-7][0-7_]*)", 
+                    "name": "constant.numeric.integer.octal.swift"
+                }, 
+                {
+                    "comment": null, 
+                    "match": "\\-?(\\d[\\d_]*)", 
+                    "name": "constant.numeric.integer.decimal.swift"
+                }, 
+                {
+                    "comment": null, 
+                    "match": "\\-?(0x\\h[\\h_]*)", 
+                    "name": "constant.numeric.integer.hexadecimal.swift"
+                }
+            ], 
+            "name": "constant.numeric.integer.swift"
+        }, 
         "ternary-operator": {
             "match": "(?<=[\\s(\\[{,;:])(\\?|:)(?=[\\s)\\]},;:])", 
             "name": "keyword.operator.ternary.swift"
@@ -217,6 +242,19 @@
         "increment-decrement-operator": {
             "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(\\+\\+|\\-\\-)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.increment-or-decrement.swift"
+        }, 
+        "floating-point-literal": {
+            "patterns": [
+                {
+                    "comment": null, 
+                    "match": "(\\d[\\d_]*)(\\.(\\d[\\d_]*))?([eE][+\\-]?(\\d[\\d_]*))?"
+                }, 
+                {
+                    "comment": null, 
+                    "match": "(0x\\h[\\h_]*)(\\.(0x\\h[\\h_]*))?([pP][+\\-]?(0x\\h[\\h_]*))"
+                }
+            ], 
+            "name": "constant.numeric.floating-point.swift"
         }, 
         "switch-statement": {
             "match": "\\b(switch|case|default|where)\\b", 
@@ -355,10 +393,6 @@
                     "include": "#custom-operator"
                 }
             ]
-        }, 
-        "number": {
-            "match": "(?:[\\-+])?\\d+(?:\\.\\d+)?\\b", 
-            "name": "constant.numeric.swift"
         }, 
         "type-casting-operator": {
             "match": "\\b(is|as)\\b", 
