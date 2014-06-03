@@ -22,10 +22,6 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#storage-type</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#loop-control</string>
 		</dict>
 		<dict>
@@ -63,6 +59,14 @@
 		<dict>
 			<key>include</key>
 			<string>#optional-type</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#protocol-composition-type</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#storage-type</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -539,6 +543,43 @@
 			<string>\b(Int|Float|Double|String|Bool|Character)\b</string>
 			<key>name</key>
 			<string>support.type.swift</string>
+		</dict>
+		<key>protocol-composition-type</key>
+		<dict>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.protocol.swift</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.protocol.begin.swift</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.protocol.end.swift</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b(protocol)(&lt;)</string>
+			<key>name</key>
+			<string>meta.protocol.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
 		</dict>
 		<key>range-operator</key>
 		<dict>

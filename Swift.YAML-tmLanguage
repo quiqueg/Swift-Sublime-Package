@@ -10,7 +10,6 @@ keyEquivalent: ^~S
 patterns:
 - include: '#comments'
 - include: '#literals'
-- include: '#storage-type'
 - include: '#loop-control'
 - include: '#conditional-statement'
 - include: '#control-transfer-statement'
@@ -21,6 +20,8 @@ patterns:
 - include: '#primitive-type'
 - include: '#collection-type'
 - include: '#optional-type'
+- include: '#protocol-composition-type'
+- include: '#storage-type'
 - include: '#boolean'
 - include: '#number'
 - include: '#import'
@@ -209,7 +210,17 @@ repository:
       '1': { name: punctuation.optional.end.swift }
     patterns:
       - include: $self
-
+  protocol-composition-type:
+    name: meta.protocol.swift
+    match: \b(protocol)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.protocol.swift }
+      '2': { name: punctuation.protocol.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.protocol.end.swift }
+    patterns:
+      - include: $self
 
 # Comments
   comments:

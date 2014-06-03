@@ -12,9 +12,6 @@
             "include": "#literals"
         }, 
         {
-            "include": "#storage-type"
-        }, 
-        {
             "include": "#loop-control"
         }, 
         {
@@ -43,6 +40,12 @@
         }, 
         {
             "include": "#optional-type"
+        }, 
+        {
+            "include": "#protocol-composition-type"
+        }, 
+        {
+            "include": "#storage-type"
         }, 
         {
             "include": "#boolean"
@@ -234,6 +237,29 @@
             }, 
             "begin": "/\\*", 
             "name": "comment.block.swift"
+        }, 
+        "protocol-composition-type": {
+            "patterns": [
+                {
+                    "include": "$self"
+                }
+            ], 
+            "end": "(>)", 
+            "beginCaptures": {
+                "1": {
+                    "name": "support.type.protocol.swift"
+                }, 
+                "2": {
+                    "name": "punctuation.protocol.begin.swift"
+                }
+            }, 
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.protocol.end.swift"
+                }
+            }, 
+            "match": "\\b(protocol)(<)", 
+            "name": "meta.protocol.swift"
         }, 
         "string-literal": {
             "patterns": [
