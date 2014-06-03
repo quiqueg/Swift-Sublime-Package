@@ -14,6 +14,8 @@ patterns:
 - include: '#loop-control'
 - include: '#conditional-statement'
 - include: '#control-transfer-statement'
+- include: '#operators'
+- include: '#operator-keywords'
 - include: '#special-keyword'
 - include: '#class-function'
 - include: '#primitive-type'
@@ -56,6 +58,54 @@ repository:
   special-keyword:
     name: constant.language.swift
     match: \b(self|super)\b
+
+# Binary Operators
+  operators:
+    patterns:
+    - include: '#comparative-operator'
+    - include: '#assignment-operator'
+    - include: '#logical-operator'
+    - include: '#remainder-operator'
+    - include: '#increment-decrement-operator'
+    - include: '#overflow-operator'
+    - include: '#range-operator'
+    - include: '#bitwise-operator'
+    - include: '#arithmetic-operator'
+  comparative-operator:
+    name: keyword.operator.comparative.swift
+    match: ((=|!)==?|(<|>)=?|~=)
+  assignment-operator:
+    name: keyword.operator.assignment.swift
+    match: (\+|\-|\*|\/|%|<<|>>|&|\^|\||&&|\|\|)?=
+  logical-operator:
+    name: keyword.operator.logical.swift
+    match: (!|&&|\|\|)
+  remainder-operator:
+    name: keyword.operator.remainder.swift
+    match: \%
+  increment-decrement-operator:
+    name: keyword.operator.increment-or-decrement.swift
+    match: (\+\+|\-\-)
+  overflow-operator:
+    name: keyword.operator.overflow.swift
+    match: \&(\+|\-|\*|\/|%)
+  range-operator:
+    name: keyword.operator.range.swift
+    match: \.\.(?:\.)?
+  arithmetic-operator:
+    name: keyword.operator.arithmetic.swift
+    match: (\+|\-|\*|\/)
+  bitwise-operator:
+    name: keyword.operator.bitwise.swift
+    match: (&|\||\^|<<|>>)
+  type-casting-operator:
+    name: keyword.operator.cast.swift
+    match: \b(is|as)\b
+
+# Operator Keywords
+  operator-keywords:
+    name: storage.type.swift
+    match: \b(operator|prefix|infix|postfix)\b
 
 # Primitive values
   boolean:

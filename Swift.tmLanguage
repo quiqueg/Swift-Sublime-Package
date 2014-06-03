@@ -38,6 +38,14 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#operators</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#operator-keywords</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#special-keyword</string>
 		</dict>
 		<dict>
@@ -67,6 +75,27 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>arithmetic-operator</key>
+		<dict>
+			<key>match</key>
+			<string>(\+|\-|\*|\/)</string>
+			<key>name</key>
+			<string>keyword.operator.arithmetic.swift</string>
+		</dict>
+		<key>assignment-operator</key>
+		<dict>
+			<key>match</key>
+			<string>(\+|\-|\*|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\^|\||&amp;&amp;|\|\|)?=</string>
+			<key>name</key>
+			<string>keyword.operator.assignment.swift</string>
+		</dict>
+		<key>bitwise-operator</key>
+		<dict>
+			<key>match</key>
+			<string>(&amp;|\||\^|&lt;&lt;|&gt;&gt;)</string>
+			<key>name</key>
+			<string>keyword.operator.bitwise.swift</string>
+		</dict>
 		<key>block-comment</key>
 		<dict>
 			<key>begin</key>
@@ -136,6 +165,13 @@
 					<string>#in-line-comment</string>
 				</dict>
 			</array>
+		</dict>
+		<key>comparative-operator</key>
+		<dict>
+			<key>match</key>
+			<string>((=|!)==?|(&lt;|&gt;)=?|~=)</string>
+			<key>name</key>
+			<string>keyword.operator.comparative.swift</string>
 		</dict>
 		<key>conditional-statement</key>
 		<dict>
@@ -257,6 +293,20 @@
 			<key>name</key>
 			<string>comment.line.double-slash.swift</string>
 		</dict>
+		<key>increment-decrement-operator</key>
+		<dict>
+			<key>match</key>
+			<string>(\+\+|\-\-)</string>
+			<key>name</key>
+			<string>keyword.operator.increment-or-decrement.swift</string>
+		</dict>
+		<key>logical-operator</key>
+		<dict>
+			<key>match</key>
+			<string>(!|&amp;&amp;|\|\|)</string>
+			<key>name</key>
+			<string>keyword.operator.logical.swift</string>
+		</dict>
 		<key>loop-control</key>
 		<dict>
 			<key>match</key>
@@ -271,6 +321,62 @@
 			<key>name</key>
 			<string>constant.numeric.swift</string>
 		</dict>
+		<key>operator-keywords</key>
+		<dict>
+			<key>match</key>
+			<string>\b(operator|prefix|infix|postfix)\b</string>
+			<key>name</key>
+			<string>storage.type.swift</string>
+		</dict>
+		<key>operators</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comparative-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#assignment-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#logical-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#remainder-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#increment-decrement-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#overflow-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#range-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#bitwise-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#arithmetic-operator</string>
+				</dict>
+			</array>
+		</dict>
+		<key>overflow-operator</key>
+		<dict>
+			<key>match</key>
+			<string>\&amp;(\+|\-|\*|\/|%)</string>
+			<key>name</key>
+			<string>keyword.operator.overflow.swift</string>
+		</dict>
 		<key>primitive-type</key>
 		<dict>
 			<key>comment</key>
@@ -279,6 +385,20 @@
 			<string>\b(Int|Float|Double|String|Bool|Character)\b</string>
 			<key>name</key>
 			<string>storage.type.swift</string>
+		</dict>
+		<key>range-operator</key>
+		<dict>
+			<key>match</key>
+			<string>\.\.(?:\.)?</string>
+			<key>name</key>
+			<string>keyword.operator.range.swift</string>
+		</dict>
+		<key>remainder-operator</key>
+		<dict>
+			<key>match</key>
+			<string>\%</string>
+			<key>name</key>
+			<string>keyword.operator.remainder.swift</string>
 		</dict>
 		<key>single-quoted-string</key>
 		<dict>
@@ -342,6 +462,13 @@
 			<string>\b(switch|case|default|where)\b</string>
 			<key>name</key>
 			<string>keyword.control.conditional.swift</string>
+		</dict>
+		<key>type-casting-operator</key>
+		<dict>
+			<key>match</key>
+			<string>\b(is|as)\b</string>
+			<key>name</key>
+			<string>keyword.operator.cast.swift</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>

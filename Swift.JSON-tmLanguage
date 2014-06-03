@@ -1,180 +1,9 @@
 {
-    "name": "Swift", 
-    "keyEquivalent": "^~S", 
-    "uuid": "7efa1168-97c3-4433-8dd7-15b99bf3bb53", 
-    "repository": {
-        "special-keyword": {
-            "match": "\\b(self|super)\\b", 
-            "name": "constant.language.swift"
-        }, 
-        "class-function": {
-            "match": "\\b(init|get|set|willSet|didSet|override)", 
-            "name": "keyword.swift"
-        }, 
-        "primitive-type": {
-            "comment": "Primitive types", 
-            "match": "\\b(Int|Float|Double|String|Bool|Character)\\b", 
-            "name": "storage.type.swift"
-        }, 
-        "storage-type": {
-            "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b", 
-            "name": "storage.type.swift"
-        }, 
-        "single-quoted-string": {
-            "comment": "Single-quoted string", 
-            "end": "\\'", 
-            "begin": "\\'", 
-            "name": "string.quoted.single.swift", 
-            "patterns": [
-                {
-                    "match": "\\\\.", 
-                    "name": "constant.character.escape.swift"
-                }, 
-                {
-                    "match": ".*?"
-                }
-            ]
-        }, 
-        "number": {
-            "match": "(?:[\\-+])?\\d+(?:\\.\\d+)?\\b", 
-            "name": "constant.numeric.swift"
-        }, 
-        "block-comment": {
-            "comment": "Block level comments", 
-            "name": "comment.block.swift", 
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.comment.block.end.swift"
-                }
-            }, 
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.comment.block.begin.swift"
-                }
-            }, 
-            "end": "\\*/", 
-            "begin": "/\\*"
-        }, 
-        "if-else-statement": {
-            "match": "\\b(if|else)\\b", 
-            "name": "keyword.control.conditional.swift"
-        }, 
-        "strings": {
-            "comment": "Quoted strings", 
-            "name": "string.quoted.swift", 
-            "patterns": [
-                {
-                    "include": "#single-quoted-string"
-                }, 
-                {
-                    "include": "#double-quoted-string"
-                }
-            ]
-        }, 
-        "control-transfer-statement": {
-            "match": "\\b(continue|break|fallthrough|return)\\b", 
-            "name": "keyword.control.transfer.swift"
-        }, 
-        "comments": {
-            "comment": "All comment types", 
-            "patterns": [
-                {
-                    "include": "#documentation-comment"
-                }, 
-                {
-                    "include": "#block-comment"
-                }, 
-                {
-                    "include": "#in-line-comment"
-                }
-            ]
-        }, 
-        "conditional-statement": {
-            "name": "keyword.control.conditional.swift", 
-            "patterns": [
-                {
-                    "include": "#if-else-statement"
-                }, 
-                {
-                    "include": "#switch-statement"
-                }
-            ]
-        }, 
-        "double-quoted-string": {
-            "comment": "Double-quoted string", 
-            "end": "\\\"", 
-            "begin": "\\\"", 
-            "name": "string.quoted.double.swift", 
-            "patterns": [
-                {
-                    "match": "\\\\.", 
-                    "name": "constant.character.escape.swift"
-                }, 
-                {
-                    "match": ".*?"
-                }
-            ]
-        }, 
-        "boolean": {
-            "match": "\\b(true|false)\\b", 
-            "name": "keyword.constant.boolean.swift"
-        }, 
-        "in-line-comment": {
-            "comment": "In-line comments", 
-            "match": "(//).*", 
-            "name": "comment.line.double-slash.swift", 
-            "captures": {
-                "1": {
-                    "name": "punctuation.definition.comment.line.double-slash.swift"
-                }
-            }
-        }, 
-        "loop-control": {
-            "match": "\\b(while|do|for|in)\\b", 
-            "name": "keyword.control.loop.swift"
-        }, 
-        "switch-statement": {
-            "match": "\\b(switch|case|default|where)\\b", 
-            "name": "keyword.control.conditional.swift"
-        }, 
-        "documentation-comment": {
-            "comment": "Documentation comments", 
-            "name": "comment.block.documentation.swift", 
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.comment.block.documentation.end.swift"
-                }
-            }, 
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.comment.block.documentation.begin.swift"
-                }
-            }, 
-            "end": "\\*/", 
-            "begin": "/\\*\\*"
-        }, 
-        "collection-type": {
-            "comment": "Collection types", 
-            "match": "\\b(Array|Dictionary)\\b", 
-            "name": "storage.type.swift"
-        }, 
-        "import": {
-            "comment": "Import statement", 
-            "match": "\\b(import)\\s+(\\w+)", 
-            "name": "meta.import.swift", 
-            "captures": {
-                "1": {
-                    "name": "keyword.other.import.swift"
-                }, 
-                "2": {
-                    "name": "support.type.module.import.swift"
-                }
-            }
-        }
-    }, 
     "fileTypes": [
         "swift"
     ], 
+    "keyEquivalent": "^~S", 
+    "uuid": "7efa1168-97c3-4433-8dd7-15b99bf3bb53", 
     "patterns": [
         {
             "include": "#comments"
@@ -193,6 +22,12 @@
         }, 
         {
             "include": "#control-transfer-statement"
+        }, 
+        {
+            "include": "#operators"
+        }, 
+        {
+            "include": "#operator-keywords"
         }, 
         {
             "include": "#special-keyword"
@@ -216,5 +51,251 @@
             "include": "#import"
         }
     ], 
-    "scopeName": "source.swift"
+    "scopeName": "source.swift", 
+    "repository": {
+        "double-quoted-string": {
+            "comment": "Double-quoted string", 
+            "patterns": [
+                {
+                    "match": "\\\\.", 
+                    "name": "constant.character.escape.swift"
+                }, 
+                {
+                    "match": ".*?"
+                }
+            ], 
+            "end": "\\\"", 
+            "begin": "\\\"", 
+            "name": "string.quoted.double.swift"
+        }, 
+        "arithmetic-operator": {
+            "match": "(\\+|\\-|\\*|\\/)", 
+            "name": "keyword.operator.arithmetic.swift"
+        }, 
+        "overflow-operator": {
+            "match": "\\&(\\+|\\-|\\*|\\/|%)", 
+            "name": "keyword.operator.overflow.swift"
+        }, 
+        "control-transfer-statement": {
+            "match": "\\b(continue|break|fallthrough|return)\\b", 
+            "name": "keyword.control.transfer.swift"
+        }, 
+        "operator-keywords": {
+            "match": "\\b(operator|prefix|infix|postfix)\\b", 
+            "name": "storage.type.swift"
+        }, 
+        "bitwise-operator": {
+            "match": "(&|\\||\\^|<<|>>)", 
+            "name": "keyword.operator.bitwise.swift"
+        }, 
+        "conditional-statement": {
+            "patterns": [
+                {
+                    "include": "#if-else-statement"
+                }, 
+                {
+                    "include": "#switch-statement"
+                }
+            ], 
+            "name": "keyword.control.conditional.swift"
+        }, 
+        "collection-type": {
+            "comment": "Collection types", 
+            "match": "\\b(Array|Dictionary)\\b", 
+            "name": "storage.type.swift"
+        }, 
+        "boolean": {
+            "match": "\\b(true|false)\\b", 
+            "name": "keyword.constant.boolean.swift"
+        }, 
+        "single-quoted-string": {
+            "comment": "Single-quoted string", 
+            "patterns": [
+                {
+                    "match": "\\\\.", 
+                    "name": "constant.character.escape.swift"
+                }, 
+                {
+                    "match": ".*?"
+                }
+            ], 
+            "end": "\\'", 
+            "begin": "\\'", 
+            "name": "string.quoted.single.swift"
+        }, 
+        "range-operator": {
+            "match": "\\.\\.(?:\\.)?", 
+            "name": "keyword.operator.range.swift"
+        }, 
+        "storage-type": {
+            "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b", 
+            "name": "storage.type.swift"
+        }, 
+        "assignment-operator": {
+            "match": "(\\+|\\-|\\*|\\/|%|<<|>>|&|\\^|\\||&&|\\|\\|)?=", 
+            "name": "keyword.operator.assignment.swift"
+        }, 
+        "special-keyword": {
+            "match": "\\b(self|super)\\b", 
+            "name": "constant.language.swift"
+        }, 
+        "import": {
+            "captures": {
+                "1": {
+                    "name": "keyword.other.import.swift"
+                }, 
+                "2": {
+                    "name": "support.type.module.import.swift"
+                }
+            }, 
+            "comment": "Import statement", 
+            "match": "\\b(import)\\s+(\\w+)", 
+            "name": "meta.import.swift"
+        }, 
+        "if-else-statement": {
+            "match": "\\b(if|else)\\b", 
+            "name": "keyword.control.conditional.swift"
+        }, 
+        "increment-decrement-operator": {
+            "match": "(\\+\\+|\\-\\-)", 
+            "name": "keyword.operator.increment-or-decrement.swift"
+        }, 
+        "switch-statement": {
+            "match": "\\b(switch|case|default|where)\\b", 
+            "name": "keyword.control.conditional.swift"
+        }, 
+        "block-comment": {
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.begin.swift"
+                }
+            }, 
+            "comment": "Block level comments", 
+            "end": "\\*/", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.end.swift"
+                }
+            }, 
+            "begin": "/\\*", 
+            "name": "comment.block.swift"
+        }, 
+        "strings": {
+            "patterns": [
+                {
+                    "include": "#single-quoted-string"
+                }, 
+                {
+                    "include": "#double-quoted-string"
+                }
+            ], 
+            "comment": "Quoted strings", 
+            "name": "string.quoted.swift"
+        }, 
+        "loop-control": {
+            "match": "\\b(while|do|for|in)\\b", 
+            "name": "keyword.control.loop.swift"
+        }, 
+        "primitive-type": {
+            "comment": "Primitive types", 
+            "match": "\\b(Int|Float|Double|String|Bool|Character)\\b", 
+            "name": "storage.type.swift"
+        }, 
+        "operators": {
+            "patterns": [
+                {
+                    "include": "#comparative-operator"
+                }, 
+                {
+                    "include": "#assignment-operator"
+                }, 
+                {
+                    "include": "#logical-operator"
+                }, 
+                {
+                    "include": "#remainder-operator"
+                }, 
+                {
+                    "include": "#increment-decrement-operator"
+                }, 
+                {
+                    "include": "#overflow-operator"
+                }, 
+                {
+                    "include": "#range-operator"
+                }, 
+                {
+                    "include": "#bitwise-operator"
+                }, 
+                {
+                    "include": "#arithmetic-operator"
+                }
+            ]
+        }, 
+        "number": {
+            "match": "(?:[\\-+])?\\d+(?:\\.\\d+)?\\b", 
+            "name": "constant.numeric.swift"
+        }, 
+        "type-casting-operator": {
+            "match": "\\b(is|as)\\b", 
+            "name": "keyword.operator.cast.swift"
+        }, 
+        "class-function": {
+            "match": "\\b(init|get|set|willSet|didSet|override)", 
+            "name": "keyword.swift"
+        }, 
+        "documentation-comment": {
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.documentation.begin.swift"
+                }
+            }, 
+            "comment": "Documentation comments", 
+            "end": "\\*/", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.documentation.end.swift"
+                }
+            }, 
+            "begin": "/\\*\\*", 
+            "name": "comment.block.documentation.swift"
+        }, 
+        "comparative-operator": {
+            "match": "((=|!)==?|(<|>)=?|~=)", 
+            "name": "keyword.operator.comparative.swift"
+        }, 
+        "logical-operator": {
+            "match": "(!|&&|\\|\\|)", 
+            "name": "keyword.operator.logical.swift"
+        }, 
+        "in-line-comment": {
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.comment.line.double-slash.swift"
+                }
+            }, 
+            "comment": "In-line comments", 
+            "match": "(//).*", 
+            "name": "comment.line.double-slash.swift"
+        }, 
+        "comments": {
+            "patterns": [
+                {
+                    "include": "#documentation-comment"
+                }, 
+                {
+                    "include": "#block-comment"
+                }, 
+                {
+                    "include": "#in-line-comment"
+                }
+            ], 
+            "comment": "All comment types"
+        }, 
+        "remainder-operator": {
+            "match": "\\%", 
+            "name": "keyword.operator.remainder.swift"
+        }
+    }, 
+    "name": "Swift"
 }
