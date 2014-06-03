@@ -57,18 +57,12 @@
     "scopeName": "source.swift", 
     "repository": {
         "arithmetic-operator": {
-            "match": "(\\+|\\-|\\*|\\/)", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(\\+|\\-|\\*|\\/)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.arithmetic.swift"
         }, 
-        "literals": {
-            "patterns": [
-                {
-                    "include": "#string-literal"
-                }, 
-                {
-                    "include": "#special-literal"
-                }
-            ]
+        "overflow-operator": {
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)\\&(\\+|\\-|\\*|\\/|%)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
+            "name": "keyword.operator.overflow.swift"
         }, 
         "control-transfer-statement": {
             "match": "\\b(continue|break|fallthrough|return)\\b", 
@@ -79,19 +73,24 @@
             "name": "storage.type.swift"
         }, 
         "bitwise-operator": {
-            "match": "(&|\\||\\^|<<|>>)", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(&|\\||\\^|<<|>>)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.bitwise.swift"
         }, 
-        "conditional-statement": {
+        "custom-operator": {
             "patterns": [
                 {
-                    "include": "#if-else-statement"
+                    "match": "(?<=[\\s(\\[{,;:])(\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)++(?![\\s)\\]},;:])", 
+                    "name": "keyword.operator.custom.prefix.unary.swift"
                 }, 
                 {
-                    "include": "#switch-statement"
+                    "match": "(?<![\\s(\\[{,;:])(\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)++(?![\\s)\\]},;:\\.])", 
+                    "name": "keyword.operator.custom.postfix.unary.swift"
+                }, 
+                {
+                    "match": "(?<=[\\s(\\[{,;:])(\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)++(?=[\\s)\\]},;:])", 
+                    "name": "keyword.operator.custom.binary.swift"
                 }
-            ], 
-            "name": "keyword.control.conditional.swift"
+            ]
         }, 
         "collection-type": {
             "comment": "Collection types", 
@@ -103,23 +102,29 @@
             "name": "keyword.constant.boolean.swift"
         }, 
         "range-operator": {
-            "match": "\\.\\.(?:\\.)?", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)\\.\\.(?:\\.)?(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.range.swift"
         }, 
         "special-literal": {
             "match": "\\b__(FILE|LINE|COLUMN|FUNCTION)__\\b", 
             "name": "keyword.other.literal.swift"
         }, 
-        "overflow-operator": {
-            "match": "\\&(\\+|\\-|\\*|\\/|%)", 
-            "name": "keyword.operator.overflow.swift"
+        "literals": {
+            "patterns": [
+                {
+                    "include": "#string-literal"
+                }, 
+                {
+                    "include": "#special-literal"
+                }
+            ]
         }, 
         "storage-type": {
             "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b", 
             "name": "storage.type.swift"
         }, 
         "assignment-operator": {
-            "match": "(\\+|\\-|\\*|\\/|%|<<|>>|&|\\^|\\||&&|\\|\\|)?=", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(\\+|\\-|\\*|\\/|%|<<|>>|&|\\^|\\||&&|\\|\\|)?=(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.assignment.swift"
         }, 
         "special-keyword": {
@@ -143,8 +148,12 @@
             "match": "\\b(if|else)\\b", 
             "name": "keyword.control.conditional.swift"
         }, 
+        "ternary-operator": {
+            "match": "(?<=[\\s(\\[{,;:])(\\?|:)(?=[\\s)\\]},;:])", 
+            "name": "keyword.operator.ternary.swift"
+        }, 
         "increment-decrement-operator": {
-            "match": "(\\+\\+|\\-\\-)", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(\\+\\+|\\-\\-)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.increment-or-decrement.swift"
         }, 
         "switch-statement": {
@@ -239,6 +248,12 @@
                 }, 
                 {
                     "include": "#arithmetic-operator"
+                }, 
+                {
+                    "include": "#ternary-operator"
+                }, 
+                {
+                    "include": "#custom-operator"
                 }
             ]
         }, 
@@ -247,7 +262,7 @@
             "name": "constant.numeric.swift"
         }, 
         "type-casting-operator": {
-            "match": "\\b(is|as)\\b", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)\\b(is|as)\\b", 
             "name": "keyword.operator.cast.swift"
         }, 
         "class-function": {
@@ -271,11 +286,11 @@
             "name": "comment.block.documentation.swift"
         }, 
         "comparative-operator": {
-            "match": "((=|!)==?|(<|>)=?|~=)", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)((=|!)==?|(<|>)=?|~=)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.comparative.swift"
         }, 
         "logical-operator": {
-            "match": "(!|&&|\\|\\|)", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)(!|&&|\\|\\|)(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.logical.swift"
         }, 
         "in-line-comment": {
@@ -303,8 +318,19 @@
             "comment": "All comment types"
         }, 
         "remainder-operator": {
-            "match": "\\%", 
+            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)\\%(?!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)", 
             "name": "keyword.operator.remainder.swift"
+        }, 
+        "conditional-statement": {
+            "patterns": [
+                {
+                    "include": "#if-else-statement"
+                }, 
+                {
+                    "include": "#switch-statement"
+                }
+            ], 
+            "name": "keyword.control.conditional.swift"
         }
     }, 
     "name": "Swift"

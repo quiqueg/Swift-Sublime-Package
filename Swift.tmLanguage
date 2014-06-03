@@ -82,21 +82,21 @@
 		<key>arithmetic-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(\+|\-|\*|\/)</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+|\-|\*|\/)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.arithmetic.swift</string>
 		</dict>
 		<key>assignment-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(\+|\-|\*|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\^|\||&amp;&amp;|\|\|)?=</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+|\-|\*|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\^|\||&amp;&amp;|\|\|)?=(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.assignment.swift</string>
 		</dict>
 		<key>bitwise-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(&amp;|\||\^|&lt;&lt;|&gt;&gt;)</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(&amp;|\||\^|&lt;&lt;|&gt;&gt;)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.bitwise.swift</string>
 		</dict>
@@ -173,7 +173,7 @@
 		<key>comparative-operator</key>
 		<dict>
 			<key>match</key>
-			<string>((=|!)==?|(&lt;|&gt;)=?|~=)</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)((=|!)==?|(&lt;|&gt;)=?|~=)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.comparative.swift</string>
 		</dict>
@@ -199,6 +199,30 @@
 			<string>\b(continue|break|fallthrough|return)\b</string>
 			<key>name</key>
 			<string>keyword.control.transfer.swift</string>
+		</dict>
+		<key>custom-operator</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?![\s)\]},;:])</string>
+					<key>name</key>
+					<string>keyword.operator.custom.prefix.unary.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;![\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?![\s)\]},;:\.])</string>
+					<key>name</key>
+					<string>keyword.operator.custom.postfix.unary.swift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?=[\s)\]},;:])</string>
+					<key>name</key>
+					<string>keyword.operator.custom.binary.swift</string>
+				</dict>
+			</array>
 		</dict>
 		<key>documentation-comment</key>
 		<dict>
@@ -276,7 +300,7 @@
 		<key>increment-decrement-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(\+\+|\-\-)</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+\+|\-\-)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.increment-or-decrement.swift</string>
 		</dict>
@@ -297,7 +321,7 @@
 		<key>logical-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(!|&amp;&amp;|\|\|)</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(!|&amp;&amp;|\|\|)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.logical.swift</string>
 		</dict>
@@ -362,12 +386,20 @@
 					<key>include</key>
 					<string>#arithmetic-operator</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#ternary-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#custom-operator</string>
+				</dict>
 			</array>
 		</dict>
 		<key>overflow-operator</key>
 		<dict>
 			<key>match</key>
-			<string>\&amp;(\+|\-|\*|\/|%)</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\&amp;(\+|\-|\*|\/|%)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.overflow.swift</string>
 		</dict>
@@ -383,14 +415,14 @@
 		<key>range-operator</key>
 		<dict>
 			<key>match</key>
-			<string>\.\.(?:\.)?</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\.\.(?:\.)?(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.range.swift</string>
 		</dict>
 		<key>remainder-operator</key>
 		<dict>
 			<key>match</key>
-			<string>\%</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\%(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.remainder.swift</string>
 		</dict>
@@ -477,10 +509,17 @@
 			<key>name</key>
 			<string>keyword.control.conditional.swift</string>
 		</dict>
+		<key>ternary-operator</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;=[\s(\[{,;:])(\?|:)(?=[\s)\]},;:])</string>
+			<key>name</key>
+			<string>keyword.operator.ternary.swift</string>
+		</dict>
 		<key>type-casting-operator</key>
 		<dict>
 			<key>match</key>
-			<string>\b(is|as)\b</string>
+			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\b(is|as)\b</string>
 			<key>name</key>
 			<string>keyword.operator.cast.swift</string>
 		</dict>

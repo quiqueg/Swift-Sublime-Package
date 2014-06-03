@@ -72,36 +72,49 @@ repository:
     - include: '#range-operator'
     - include: '#bitwise-operator'
     - include: '#arithmetic-operator'
+    - include: '#ternary-operator'
+    - include: '#custom-operator'
   comparative-operator:
     name: keyword.operator.comparative.swift
-    match: ((=|!)==?|(<|>)=?|~=)
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)((=|!)==?|(<|>)=?|~=)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   assignment-operator:
     name: keyword.operator.assignment.swift
-    match: (\+|\-|\*|\/|%|<<|>>|&|\^|\||&&|\|\|)?=
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(\+|\-|\*|\/|%|<<|>>|&|\^|\||&&|\|\|)?=(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   logical-operator:
     name: keyword.operator.logical.swift
-    match: (!|&&|\|\|)
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(!|&&|\|\|)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   remainder-operator:
     name: keyword.operator.remainder.swift
-    match: \%
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\%(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   increment-decrement-operator:
     name: keyword.operator.increment-or-decrement.swift
-    match: (\+\+|\-\-)
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(\+\+|\-\-)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   overflow-operator:
     name: keyword.operator.overflow.swift
-    match: \&(\+|\-|\*|\/|%)
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\&(\+|\-|\*|\/|%)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   range-operator:
     name: keyword.operator.range.swift
-    match: \.\.(?:\.)?
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\.\.(?:\.)?(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   arithmetic-operator:
     name: keyword.operator.arithmetic.swift
-    match: (\+|\-|\*|\/)
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(\+|\-|\*|\/)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   bitwise-operator:
     name: keyword.operator.bitwise.swift
-    match: (&|\||\^|<<|>>)
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(&|\||\^|<<|>>)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   type-casting-operator:
     name: keyword.operator.cast.swift
-    match: \b(is|as)\b
+    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\b(is|as)\b
+  ternary-operator:
+    name: keyword.operator.ternary.swift
+    match: (?<=[\s(\[{,;:])(\?|:)(?=[\s)\]},;:])
+  custom-operator:
+    patterns:
+    - name: keyword.operator.custom.prefix.unary.swift
+      match: (?<=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)++(?![\s)\]},;:])
+    - name: keyword.operator.custom.postfix.unary.swift
+      match: (?<![\s(\[{,;:])(\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)++(?![\s)\]},;:\.])
+    - name: keyword.operator.custom.binary.swift
+      match: (?<=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)++(?=[\s)\]},;:])
 
 # Operator Keywords
   operator-keywords:
