@@ -519,7 +519,7 @@
 		<key>type-casting-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\b(is|as)\b</string>
+			<string>\b(is|as)\b</string>
 			<key>name</key>
 			<string>keyword.operator.cast.swift</string>
 		</dict>

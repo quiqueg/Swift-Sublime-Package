@@ -103,7 +103,7 @@ repository:
     match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(&|\||\^|<<|>>)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
   type-casting-operator:
     name: keyword.operator.cast.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\b(is|as)\b
+    match: \b(is|as)\b
   ternary-operator:
     name: keyword.operator.ternary.swift
     match: (?<=[\s(\[{,;:])(\?|:)(?=[\s)\]},;:])

@@ -262,7 +262,7 @@
             "name": "constant.numeric.swift"
         }, 
         "type-casting-operator": {
-            "match": "(?<!\\/|=|\\-|\\+|!|\\*|%|<|>|&|\\||\\^|~|\\.)\\b(is|as)\\b", 
+            "match": "\\b(is|as)\\b", 
             "name": "keyword.operator.cast.swift"
         }, 
         "class-function": {
