@@ -213,23 +213,23 @@
         "integer-literal": {
             "patterns": [
                 {
-                    "comment": null, 
-                    "match": "\\-?(0b[01][01_]*)", 
+                    "comment": "binary-literal", 
+                    "match": "(\\B\\-|\\b)(0b[01][01_]*)\\b", 
                     "name": "constant.numeric.integer.binary.swift"
                 }, 
                 {
-                    "comment": null, 
-                    "match": "\\-?(0o[0-7][0-7_]*)", 
+                    "comment": "octal-literal", 
+                    "match": "(\\B\\-|\\b)(0o[0-7][0-7_]*)\\b", 
                     "name": "constant.numeric.integer.octal.swift"
                 }, 
                 {
-                    "comment": null, 
-                    "match": "\\-?(\\d[\\d_]*)", 
+                    "comment": "decimal-literal", 
+                    "match": "(\\B\\-|\\b)(\\d[\\d_]*)\\b", 
                     "name": "constant.numeric.integer.decimal.swift"
                 }, 
                 {
-                    "comment": null, 
-                    "match": "\\-?(0x\\h[\\h_]*)", 
+                    "comment": "hexadecimal-literal", 
+                    "match": "(\\B\\-|\\b)(0x\\h[\\h_]*)\\b", 
                     "name": "constant.numeric.integer.hexadecimal.swift"
                 }
             ], 
@@ -246,12 +246,12 @@
         "floating-point-literal": {
             "patterns": [
                 {
-                    "comment": null, 
-                    "match": "(\\d[\\d_]*)(\\.(\\d[\\d_]*))?([eE][+\\-]?(\\d[\\d_]*))?"
+                    "comment": "floating-point-literal -> (decimal-literal)(decimal-fraction)?(decimal-exponent)?", 
+                    "match": "\\b(\\d[\\d_]*)(\\.(\\d[\\d_]*))?([eE][+\\-]?(\\d[\\d_]*))?\\b"
                 }, 
                 {
-                    "comment": null, 
-                    "match": "(0x\\h[\\h_]*)(\\.(0x\\h[\\h_]*))?([pP][+\\-]?(0x\\h[\\h_]*))"
+                    "comment": "floating-point-literal -> (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)", 
+                    "match": "\\b(0x\\h[\\h_]*)(\\.(0x\\h[\\h_]*))?([pP][+\\-]?(0x\\h[\\h_]*))\\b"
                 }
             ], 
             "name": "constant.numeric.floating-point.swift"
@@ -311,19 +311,19 @@
                             "include": "$self"
                         }
                     ], 
-                    "end": "\\)", 
+                    "end": "(\\))", 
                     "beginCaptures": {
-                        "0": {
+                        "1": {
                             "name": "support.punctuation.expression.begin.swift"
                         }
                     }, 
-                    "contentName": "meta.expression.swift", 
                     "endCaptures": {
-                        "0": {
+                        "1": {
                             "name": "support.punctuation.expression.end.swift"
                         }
                     }, 
-                    "begin": "\\\\\\("
+                    "begin": "(\\\\\\()", 
+                    "name": "meta.expression.swift"
                 }, 
                 {
                     "match": "(\\\"|\\\\)", 

@@ -128,28 +128,31 @@ repository:
     - include: '#floating-point-literal'
     - include: '#string-literal'
     - include: '#special-literal'
+
   integer-literal:
     name: constant.numeric.integer.swift
     patterns:
-    - comment: #binary-literal
+    - comment: binary-literal
       name: constant.numeric.integer.binary.swift
-      match: \-?(0b[01][01_]*)
-    - comment: #octal-literal
+      match: (\B\-|\b)(0b[01][01_]*)\b
+    - comment: octal-literal
       name: constant.numeric.integer.octal.swift
-      match: \-?(0o[0-7][0-7_]*)
-    - comment: #decimal-literal
+      match: (\B\-|\b)(0o[0-7][0-7_]*)\b
+    - comment: decimal-literal
       name: constant.numeric.integer.decimal.swift
-      match: \-?(\d[\d_]*)
-    - comment: #hexadecimal-literal
+      match: (\B\-|\b)(\d[\d_]*)\b
+    - comment: hexadecimal-literal
       name: constant.numeric.integer.hexadecimal.swift
-      match: \-?(0x\h[\h_]*)
+      match: (\B\-|\b)(0x\h[\h_]*)\b
+
   floating-point-literal:
     name: constant.numeric.floating-point.swift
     patterns:
-    - comment: #floating-point-literal -> (decimal-literal)(decimal-fraction)?(decimal-exponent)?
-      match: (\d[\d_]*)(\.(\d[\d_]*))?([eE][+\-]?(\d[\d_]*))?
-    - comment: #floating-point-literal -> (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)
-      match: (0x\h[\h_]*)(\.(0x\h[\h_]*))?([pP][+\-]?(0x\h[\h_]*))
+    - comment: floating-point-literal -> (decimal-literal)(decimal-fraction)?(decimal-exponent)?
+      match: \b(\d[\d_]*)(\.(\d[\d_]*))?([eE][+\-]?(\d[\d_]*))?\b
+    - comment: floating-point-literal -> (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)
+      match: \b(0x\h[\h_]*)(\.(0x\h[\h_]*))?([pP][+\-]?(0x\h[\h_]*))\b
+
   string-literal:
     name: meta.literal.string.swift
     begin: \"
@@ -161,13 +164,13 @@ repository:
     patterns:
     - name: constant.character.escape.swift
       match: \\([0tnr\"\'\\]|x\h{2}|u\h{4}|U\h{8})
-    - contentName: meta.expression.swift
-      begin: \\\(
-      end: \)
+    - name: meta.expression.swift
+      begin: (\\\()
+      end: (\))
       beginCaptures:
-        '0': { name: support.punctuation.expression.begin.swift }
+        '1': { name: support.punctuation.expression.begin.swift }
       endCaptures:
-        '0': { name: support.punctuation.expression.end.swift }
+        '1': { name: support.punctuation.expression.end.swift }
       patterns:
       - include: $self
     - name: invalid.illegal.swift
@@ -177,6 +180,7 @@ repository:
   special-literal:
     name: keyword.other.literal.swift
     match: \b__(FILE|LINE|COLUMN|FUNCTION)__\b
+
 
 # Primitive values
   boolean:
