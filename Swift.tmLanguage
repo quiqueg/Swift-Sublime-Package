@@ -26,19 +26,15 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#switch-control</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#loop-control</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#if-else-control</string>
+			<string>#conditional-statement</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#return</string>
+			<string>#control-transfer-statement</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -141,6 +137,29 @@
 				</dict>
 			</array>
 		</dict>
+		<key>conditional-statement</key>
+		<dict>
+			<key>name</key>
+			<string>keyword.control.conditional.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#if-else-statement</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#switch-statement</string>
+				</dict>
+			</array>
+		</dict>
+		<key>control-transfer-statement</key>
+		<dict>
+			<key>match</key>
+			<string>\b(continue|break|fallthrough|return)\b</string>
+			<key>name</key>
+			<string>keyword.control.transfer.swift</string>
+		</dict>
 		<key>documentation-comment</key>
 		<dict>
 			<key>begin</key>
@@ -192,12 +211,12 @@
 				</dict>
 			</array>
 		</dict>
-		<key>if-else-control</key>
+		<key>if-else-statement</key>
 		<dict>
 			<key>match</key>
 			<string>\b(if|else)\b</string>
 			<key>name</key>
-			<string>keyword.control.swift</string>
+			<string>keyword.control.conditional.swift</string>
 		</dict>
 		<key>import</key>
 		<dict>
@@ -243,7 +262,7 @@
 			<key>match</key>
 			<string>\b(while|do|for|in)\b</string>
 			<key>name</key>
-			<string>keyword.control.swift</string>
+			<string>keyword.control.loop.swift</string>
 		</dict>
 		<key>number</key>
 		<dict>
@@ -257,16 +276,9 @@
 			<key>comment</key>
 			<string>Primitive types</string>
 			<key>match</key>
-			<string>\b(Int|Float|Double|String|Bool)\b</string>
+			<string>\b(Int|Float|Double|String|Bool|Character)\b</string>
 			<key>name</key>
 			<string>storage.type.swift</string>
-		</dict>
-		<key>return</key>
-		<dict>
-			<key>match</key>
-			<string>\b(return)\b</string>
-			<key>name</key>
-			<string>keyword.control.swift</string>
 		</dict>
 		<key>single-quoted-string</key>
 		<dict>
@@ -324,12 +336,12 @@
 				</dict>
 			</array>
 		</dict>
-		<key>switch-control</key>
+		<key>switch-statement</key>
 		<dict>
 			<key>match</key>
-			<string>\b(switch|case|default)\b</string>
+			<string>\b(switch|case|default|where)\b</string>
 			<key>name</key>
-			<string>keyword.control.swift</string>
+			<string>keyword.control.conditional.swift</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>

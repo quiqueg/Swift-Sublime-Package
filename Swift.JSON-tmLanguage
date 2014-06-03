@@ -1,8 +1,67 @@
 {
+    "name": "Swift", 
+    "keyEquivalent": "^~S", 
+    "uuid": "7efa1168-97c3-4433-8dd7-15b99bf3bb53", 
     "repository": {
+        "special-keyword": {
+            "match": "\\b(self|super)\\b", 
+            "name": "constant.language.swift"
+        }, 
+        "class-function": {
+            "match": "\\b(init|get|set|willSet|didSet|override)", 
+            "name": "keyword.swift"
+        }, 
+        "primitive-type": {
+            "comment": "Primitive types", 
+            "match": "\\b(Int|Float|Double|String|Bool|Character)\\b", 
+            "name": "storage.type.swift"
+        }, 
+        "storage-type": {
+            "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b", 
+            "name": "storage.type.swift"
+        }, 
+        "single-quoted-string": {
+            "comment": "Single-quoted string", 
+            "end": "\\'", 
+            "begin": "\\'", 
+            "name": "string.quoted.single.swift", 
+            "patterns": [
+                {
+                    "match": "\\\\.", 
+                    "name": "constant.character.escape.swift"
+                }, 
+                {
+                    "match": ".*?"
+                }
+            ]
+        }, 
+        "number": {
+            "match": "(?:[\\-+])?\\d+(?:\\.\\d+)?\\b", 
+            "name": "constant.numeric.swift"
+        }, 
+        "block-comment": {
+            "comment": "Block level comments", 
+            "name": "comment.block.swift", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.end.swift"
+                }
+            }, 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.block.begin.swift"
+                }
+            }, 
+            "end": "\\*/", 
+            "begin": "/\\*"
+        }, 
+        "if-else-statement": {
+            "match": "\\b(if|else)\\b", 
+            "name": "keyword.control.conditional.swift"
+        }, 
         "strings": {
-            "name": "string.quoted.swift", 
             "comment": "Quoted strings", 
+            "name": "string.quoted.swift", 
             "patterns": [
                 {
                     "include": "#single-quoted-string"
@@ -12,96 +71,9 @@
                 }
             ]
         }, 
-        "in-line-comment": {
-            "name": "comment.line.double-slash.swift", 
-            "comment": "In-line comments", 
-            "captures": {
-                "1": {
-                    "name": "punctuation.definition.comment.line.double-slash.swift"
-                }
-            }, 
-            "match": "(//).*"
-        }, 
-        "primitive-type": {
-            "name": "storage.type.swift", 
-            "comment": "Primitive types", 
-            "match": "\\b(Int|Float|Double|String|Bool)\\b"
-        }, 
-        "single-quoted-string": {
-            "name": "string.quoted.single.swift", 
-            "begin": "\\'", 
-            "end": "\\'", 
-            "patterns": [
-                {
-                    "name": "constant.character.escape.swift", 
-                    "match": "\\\\."
-                }, 
-                {
-                    "match": ".*?"
-                }
-            ], 
-            "comment": "Single-quoted string"
-        }, 
-        "collection-type": {
-            "name": "storage.type.swift", 
-            "comment": "Collection types", 
-            "match": "\\b(Array|Dictionary)\\b"
-        }, 
-        "import": {
-            "name": "meta.import.swift", 
-            "comment": "Import statement", 
-            "captures": {
-                "1": {
-                    "name": "keyword.other.import.swift"
-                }, 
-                "2": {
-                    "name": "support.type.module.import.swift"
-                }
-            }, 
-            "match": "\\b(import)\\s+(\\w+)"
-        }, 
-        "number": {
-            "name": "constant.numeric.swift", 
-            "match": "(?:[\\-+])?\\d+(?:\\.\\d+)?\\b"
-        }, 
-        "class-function": {
-            "name": "keyword.swift", 
-            "match": "\\b(init|get|set|willSet|didSet|override)"
-        }, 
-        "return": {
-            "name": "keyword.control.swift", 
-            "match": "\\b(return)\\b"
-        }, 
-        "if-else-control": {
-            "name": "keyword.control.swift", 
-            "match": "\\b(if|else)\\b"
-        }, 
-        "double-quoted-string": {
-            "name": "string.quoted.double.swift", 
-            "begin": "\\\"", 
-            "end": "\\\"", 
-            "patterns": [
-                {
-                    "name": "constant.character.escape.swift", 
-                    "match": "\\\\."
-                }, 
-                {
-                    "match": ".*?"
-                }
-            ], 
-            "comment": "Double-quoted string"
-        }, 
-        "boolean": {
-            "name": "keyword.constant.boolean.swift", 
-            "match": "\\b(true|false)\\b"
-        }, 
-        "switch-control": {
-            "name": "keyword.control.swift", 
-            "match": "\\b(switch|case|default)\\b"
-        }, 
-        "storage-type": {
-            "name": "storage.type.swift", 
-            "match": "\\b(var|func|let|class|enum|struct|protocol|extension|typealias)\\b"
+        "control-transfer-statement": {
+            "match": "\\b(continue|break|fallthrough|return)\\b", 
+            "name": "keyword.control.transfer.swift"
         }, 
         "comments": {
             "comment": "All comment types", 
@@ -117,49 +89,92 @@
                 }
             ]
         }, 
+        "conditional-statement": {
+            "name": "keyword.control.conditional.swift", 
+            "patterns": [
+                {
+                    "include": "#if-else-statement"
+                }, 
+                {
+                    "include": "#switch-statement"
+                }
+            ]
+        }, 
+        "double-quoted-string": {
+            "comment": "Double-quoted string", 
+            "end": "\\\"", 
+            "begin": "\\\"", 
+            "name": "string.quoted.double.swift", 
+            "patterns": [
+                {
+                    "match": "\\\\.", 
+                    "name": "constant.character.escape.swift"
+                }, 
+                {
+                    "match": ".*?"
+                }
+            ]
+        }, 
+        "boolean": {
+            "match": "\\b(true|false)\\b", 
+            "name": "keyword.constant.boolean.swift"
+        }, 
+        "in-line-comment": {
+            "comment": "In-line comments", 
+            "match": "(//).*", 
+            "name": "comment.line.double-slash.swift", 
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.comment.line.double-slash.swift"
+                }
+            }
+        }, 
+        "loop-control": {
+            "match": "\\b(while|do|for|in)\\b", 
+            "name": "keyword.control.loop.swift"
+        }, 
+        "switch-statement": {
+            "match": "\\b(switch|case|default|where)\\b", 
+            "name": "keyword.control.conditional.swift"
+        }, 
         "documentation-comment": {
-            "end": "\\*/", 
+            "comment": "Documentation comments", 
             "name": "comment.block.documentation.swift", 
             "endCaptures": {
                 "0": {
                     "name": "punctuation.definition.comment.block.documentation.end.swift"
                 }
             }, 
-            "comment": "Documentation comments", 
             "beginCaptures": {
                 "0": {
                     "name": "punctuation.definition.comment.block.documentation.begin.swift"
                 }
             }, 
+            "end": "\\*/", 
             "begin": "/\\*\\*"
         }, 
-        "block-comment": {
-            "end": "\\*/", 
-            "name": "comment.block.swift", 
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.comment.block.end.swift"
-                }
-            }, 
-            "comment": "Block level comments", 
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.comment.block.begin.swift"
-                }
-            }, 
-            "begin": "/\\*"
+        "collection-type": {
+            "comment": "Collection types", 
+            "match": "\\b(Array|Dictionary)\\b", 
+            "name": "storage.type.swift"
         }, 
-        "loop-control": {
-            "name": "keyword.control.swift", 
-            "match": "\\b(while|do|for|in)\\b"
-        }, 
-        "special-keyword": {
-            "name": "constant.language.swift", 
-            "match": "\\b(self|super)\\b"
+        "import": {
+            "comment": "Import statement", 
+            "match": "\\b(import)\\s+(\\w+)", 
+            "name": "meta.import.swift", 
+            "captures": {
+                "1": {
+                    "name": "keyword.other.import.swift"
+                }, 
+                "2": {
+                    "name": "support.type.module.import.swift"
+                }
+            }
         }
     }, 
-    "uuid": "7efa1168-97c3-4433-8dd7-15b99bf3bb53", 
-    "keyEquivalent": "^~S", 
+    "fileTypes": [
+        "swift"
+    ], 
     "patterns": [
         {
             "include": "#comments"
@@ -171,16 +186,13 @@
             "include": "#storage-type"
         }, 
         {
-            "include": "#switch-control"
-        }, 
-        {
             "include": "#loop-control"
         }, 
         {
-            "include": "#if-else-control"
+            "include": "#conditional-statement"
         }, 
         {
-            "include": "#return"
+            "include": "#control-transfer-statement"
         }, 
         {
             "include": "#special-keyword"
@@ -204,9 +216,5 @@
             "include": "#import"
         }
     ], 
-    "scopeName": "source.swift", 
-    "fileTypes": [
-        "swift"
-    ], 
-    "name": "Swift"
+    "scopeName": "source.swift"
 }

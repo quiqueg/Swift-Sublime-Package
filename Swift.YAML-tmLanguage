@@ -11,10 +11,9 @@ patterns:
 - include: '#comments'
 - include: '#strings'
 - include: '#storage-type'
-- include: '#switch-control'
 - include: '#loop-control'
-- include: '#if-else-control'
-- include: '#return'
+- include: '#conditional-statement'
+- include: '#control-transfer-statement'
 - include: '#special-keyword'
 - include: '#class-function'
 - include: '#primitive-type'
@@ -25,30 +24,33 @@ patterns:
 
 repository:
 
-# Switch blocks
-  switch-control:
-    name: keyword.control.swift
-    match: \b(switch|case|default)\b
+# Conditional Statements
+  conditional-statement:
+    name: keyword.control.conditional.swift
+    patterns:
+    - include: '#if-else-statement'
+    - include: '#switch-statement'
+  switch-statement:
+    name: keyword.control.conditional.swift
+    match: \b(switch|case|default|where)\b
+  if-else-statement:
+    name: keyword.control.conditional.swift
+    match: \b(if|else)\b
+
+# Control Transfer Statements
+  control-transfer-statement:
+    name: keyword.control.transfer.swift
+    match: \b(continue|break|fallthrough|return)\b
 
 # Loops
   loop-control:
-    name: keyword.control.swift
+    name: keyword.control.loop.swift
     match: \b(while|do|for|in)\b
-
-# If-else controls
-  if-else-control:
-    name: keyword.control.swift
-    match: \b(if|else)\b
 
 # Storage types
   storage-type:
     name: storage.type.swift
     match: \b(var|func|let|class|enum|struct|protocol|extension|typealias)\b
-
-# Return
-  return:
-    name: keyword.control.swift
-    match: \b(return)\b
 
 # Special keywords
   special-keyword:
@@ -73,7 +75,7 @@ repository:
   primitive-type:
     comment: Primitive types
     name: storage.type.swift
-    match: \b(Int|Float|Double|String|Bool)\b
+    match: \b(Int|Float|Double|String|Bool|Character)\b
 
   collection-type:
     comment: Collection types
