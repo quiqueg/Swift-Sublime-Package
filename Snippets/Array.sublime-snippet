@@ -1,7 +1,7 @@
 <snippet>
-  <content><![CDATA[
+	<content><![CDATA[
 Array<${1:Type}>
 ]]></content>
-  <tabTrigger>Array</tabTrigger>
-  <scope>source.swift</scope>
+	<tabTrigger>Array</tabTrigger>
+	<scope>source.swift</scope>
 </snippet>

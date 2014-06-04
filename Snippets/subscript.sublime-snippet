@@ -1,10 +1,10 @@
 <snippet>
-  <content><![CDATA[
+	<content><![CDATA[
 subscript (${1:parameters}) -> ${2:ReturnType} {
 	$3
 }
 ]]></content>
-  <tabTrigger>subscript</tabTrigger>
-  <scope>source.swift</scope>
-  <description>subscript ...</description>
+	<tabTrigger>subscript</tabTrigger>
+	<scope>source.swift</scope>
+	<description>subscript ...</description>
 </snippet>

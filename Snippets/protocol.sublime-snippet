@@ -1,10 +1,10 @@
 <snippet>
-  <content><![CDATA[
+	<content><![CDATA[
 protocol ${1:name} {
 	$2
 }
 ]]></content>
-  <tabTrigger>protocol</tabTrigger>
-  <scope>source.swift</scope>
-  <description>protocol ...</description>
+	<tabTrigger>protocol</tabTrigger>
+	<scope>source.swift</scope>
+	<description>protocol ...</description>
 </snippet>

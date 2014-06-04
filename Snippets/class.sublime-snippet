@@ -1,10 +1,10 @@
 <snippet>
-  <content><![CDATA[
+	<content><![CDATA[
 class ${1:name} {
 	$2
 }
 ]]></content>
-  <tabTrigger>class</tabTrigger>
-  <scope>source.swift</scope>
-  <description>class ...</description>
+	<tabTrigger>class</tabTrigger>
+	<scope>source.swift</scope>
+	<description>class ...</description>
 </snippet>
