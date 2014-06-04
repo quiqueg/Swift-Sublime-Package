@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+get {
+	$1
+}
+]]></content>
+	<tabTrigger>get</tabTrigger>
+	<scope>source.swift</scope>
+	<description>get {...}</description>
+</snippet>
