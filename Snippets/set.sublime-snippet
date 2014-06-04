@@ -1,10 +1,10 @@
 <snippet>
 	<content><![CDATA[
-set (${1:name}) {
-	$2
+set {
+	$1
 }
 ]]></content>
 	<tabTrigger>set</tabTrigger>
 	<scope>source.swift</scope>
-	<description>set (...) {...}</description>
+	<description>set {...}</description>
 </snippet>
