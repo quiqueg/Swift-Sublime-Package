@@ -24,6 +24,11 @@ patterns:
 
 repository:
 
+# Identifiers
+  identifiers:
+
+
+
 # Keywords
   keyword:
     patterns:
@@ -85,12 +90,15 @@ repository:
   import-declaration:
     comment: import-declaration
     name: meta.import.swift
-    match: \b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?(\w+)
+    match: \b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?([\w^0-9][\w]*)
     captures:
       '1': { name: keyword.other.import.swift }
       '2': { name: storage.modifier.swift }
       '3': { name: support.type.module.import.swift }
 
+  implicit-parameter-name:
+    comment: implicit-parameter-name
+    name: variable.parameter.swift
 
 # Operators
   operator:
