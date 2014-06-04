@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+extension ${1:name} {
+	$2
+}
+]]></content>
+	<tabTrigger>extension</tabTrigger>
+	<scope>source.swift</scope>
+	<description>extension ...</description>
+</snippet>
