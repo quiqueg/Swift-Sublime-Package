@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>author</key>
+	<string>Matt Alexander - matt@queg.net</string>
 	<key>fileTypes</key>
 	<array>
 		<string>swift</string>
@@ -14,39 +16,27 @@
 	<array>
 		<dict>
 			<key>include</key>
-			<string>#comments</string>
+			<string>#comment</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#literals</string>
+			<string>#literal</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#loop-control</string>
+			<string>#operator</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#conditional-statement</string>
+			<string>#import-declaration</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#control-transfer-statement</string>
+			<string>#storage-type</string>
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#operators</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#operator-keywords</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#special-keyword</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#class-function</string>
+			<string>#keyword</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -66,15 +56,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#storage-type</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#boolean</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#import</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -150,7 +132,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Block level comments</string>
+			<string>Block comment</string>
 			<key>end</key>
 			<string>\*/</string>
 			<key>endCaptures</key>
@@ -171,12 +153,21 @@
 			<key>name</key>
 			<string>keyword.constant.boolean.swift</string>
 		</dict>
-		<key>class-function</key>
+		<key>branch-statement-keyword</key>
 		<dict>
-			<key>match</key>
-			<string>\b(init|get|set|willSet|didSet|override)</string>
 			<key>name</key>
-			<string>keyword.swift</string>
+			<string>keyword.control.branch.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#if-statement-keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#switch-statement-keyword</string>
+				</dict>
+			</array>
 		</dict>
 		<key>collection-type</key>
 		<dict>
@@ -200,7 +191,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>comments</key>
+		<key>comment</key>
 		<dict>
 			<key>comment</key>
 			<string>All comment types</string>
@@ -227,24 +218,10 @@
 			<key>name</key>
 			<string>keyword.operator.comparative.swift</string>
 		</dict>
-		<key>conditional-statement</key>
+		<key>control-transfer-statement-keyword</key>
 		<dict>
-			<key>name</key>
-			<string>keyword.control.conditional.swift</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#if-else-statement</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#switch-statement</string>
-				</dict>
-			</array>
-		</dict>
-		<key>control-transfer-statement</key>
-		<dict>
+			<key>comment</key>
+			<string>control-transfer-statement</string>
 			<key>match</key>
 			<string>\b(continue|break|fallthrough|return)\b</string>
 			<key>name</key>
@@ -273,6 +250,15 @@
 					<string>keyword.operator.custom.binary.swift</string>
 				</dict>
 			</array>
+		</dict>
+		<key>declaration-specifier</key>
+		<dict>
+			<key>comment</key>
+			<string>declaration-specifier</string>
+			<key>match</key>
+			<string>\b(class|mutating|nonmutating|override|static|unowned((un)?safe)?|weak)\b</string>
+			<key>name</key>
+			<string>keyword.other.declaration-specifier.swift</string>
 		</dict>
 		<key>dictionary-type</key>
 		<dict>
@@ -324,7 +310,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Documentation comments</string>
+			<string>Documentation comment</string>
 			<key>end</key>
 			<string>\*/</string>
 			<key>endCaptures</key>
@@ -358,14 +344,16 @@
 				</dict>
 			</array>
 		</dict>
-		<key>if-else-statement</key>
+		<key>if-statement-keyword</key>
 		<dict>
+			<key>comment</key>
+			<string>if-statement</string>
 			<key>match</key>
 			<string>\b(if|else)\b</string>
 			<key>name</key>
-			<string>keyword.control.conditional.swift</string>
+			<string>keyword.control.if.swift</string>
 		</dict>
-		<key>import</key>
+		<key>import-declaration</key>
 		<dict>
 			<key>captures</key>
 			<dict>
@@ -377,13 +365,18 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
+					<string>storage.modifier.swift</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
 					<string>support.type.module.import.swift</string>
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>Import statement</string>
+			<string>import-declaration</string>
 			<key>match</key>
-			<string>\b(import)\s+(\w+)</string>
+			<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?(\w+)</string>
 			<key>name</key>
 			<string>meta.import.swift</string>
 		</dict>
@@ -398,7 +391,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>In-line comments</string>
+			<string>In-line comment</string>
 			<key>match</key>
 			<string>(//).*</string>
 			<key>name</key>
@@ -451,7 +444,65 @@
 				</dict>
 			</array>
 		</dict>
-		<key>literals</key>
+		<key>keyword</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#branch-statement-keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#control-transfer-statement-keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#loop-statement-keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#declaration-specifier</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operator-declaration-keyword</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>declaration keyword</string>
+					<key>match</key>
+					<string>\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var)\b</string>
+					<key>name</key>
+					<string>keyword.declaration.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>statement keyword</string>
+					<key>match</key>
+					<string>\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while)\b</string>
+					<key>name</key>
+					<string>keyword.statement.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>expression and type keyword</string>
+					<key>match</key>
+					<string>\b(as|dynamicType|is|new|super|self|Self|Type)\b</string>
+					<key>name</key>
+					<string>keyword.other.statement.swift</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>other keyword</string>
+					<key>match</key>
+					<string>\b(associativity|didSet|get|infix|inout|left|mutating|none|nonmutating|operator|override|postfix|precedence|prefix|right|set|unowned((un)?safe)?|weak|willSet)\b</string>
+					<key>name</key>
+					<string>keyword.other.swift</string>
+				</dict>
+			</array>
+		</dict>
+		<key>literal</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -480,21 +531,16 @@
 			<key>name</key>
 			<string>keyword.operator.logical.swift</string>
 		</dict>
-		<key>loop-control</key>
+		<key>loop-statement-keyword</key>
 		<dict>
+			<key>comment</key>
+			<string>loop-statement</string>
 			<key>match</key>
 			<string>\b(while|do|for|in)\b</string>
 			<key>name</key>
 			<string>keyword.control.loop.swift</string>
 		</dict>
-		<key>operator-keywords</key>
-		<dict>
-			<key>match</key>
-			<string>\b(operator|prefix|infix|postfix)\b</string>
-			<key>name</key>
-			<string>storage.type.swift</string>
-		</dict>
-		<key>operators</key>
+		<key>operator</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -540,9 +586,22 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#type-casting-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#custom-operator</string>
 				</dict>
 			</array>
+		</dict>
+		<key>operator-declaration-keyword</key>
+		<dict>
+			<key>comment</key>
+			<string>operator-declaration</string>
+			<key>match</key>
+			<string>\b(operator|prefix|infix|postfix)\b</string>
+			<key>name</key>
+			<string>keyword.other.operator.swift</string>
 		</dict>
 		<key>optional-type</key>
 		<dict>
@@ -648,13 +707,6 @@
 			<key>name</key>
 			<string>keyword.operator.remainder.swift</string>
 		</dict>
-		<key>special-keyword</key>
-		<dict>
-			<key>match</key>
-			<string>\b(self|super)\b</string>
-			<key>name</key>
-			<string>constant.language.swift</string>
-		</dict>
 		<key>special-literal</key>
 		<dict>
 			<key>match</key>
@@ -703,10 +755,10 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\\\()</string>
+					<string>\\(\()</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>0</key>
 						<dict>
 							<key>name</key>
 							<string>support.punctuation.expression.begin.swift</string>
@@ -740,18 +792,20 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>.</string>
+					<string>(.)</string>
 					<key>name</key>
 					<string>string.quoted.double.swift</string>
 				</dict>
 			</array>
 		</dict>
-		<key>switch-statement</key>
+		<key>switch-statement-keyword</key>
 		<dict>
+			<key>comment</key>
+			<string>switch-statement</string>
 			<key>match</key>
 			<string>\b(switch|case|default|where)\b</string>
 			<key>name</key>
-			<string>keyword.control.conditional.swift</string>
+			<string>keyword.control.switch.swift</string>
 		</dict>
 		<key>ternary-operator</key>
 		<dict>
@@ -763,9 +817,9 @@
 		<key>type-casting-operator</key>
 		<dict>
 			<key>match</key>
-			<string>\b(is|as)\b</string>
+			<string>\b(is\b|as(\?\B|\b))</string>
 			<key>name</key>
-			<string>keyword.operator.cast.swift</string>
+			<string>keyword.operator.type-casting.swift</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
