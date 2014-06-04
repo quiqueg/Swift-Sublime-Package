@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+deinit {
+	$1
+}
+]]></content>
+	<tabTrigger>deinit</tabTrigger>
+	<scope>source.swift</scope>
+	<description>deinit {...}</description>
+</snippet>
