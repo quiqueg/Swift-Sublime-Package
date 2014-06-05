@@ -1,6 +1,6 @@
 # author: Matt Alexander - matt@queg.net
-# [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
 # [PackageDev] target_format: plist, source_format: yaml, ext: tmLanguage
+# [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
 ---
 name: Swift
 scopeName: source.swift
@@ -25,7 +25,6 @@ patterns:
 repository:
 
 # Identifiers
-  identifiers:
 
 
 
@@ -206,7 +205,7 @@ repository:
       endCaptures:
         '1': { name: support.punctuation.expression.end.swift }
       patterns:
-      - include: $self
+      - include: source.swift
     - name: invalid.illegal.swift
       match: (\"|\\)
     - name: string.quoted.double.swift

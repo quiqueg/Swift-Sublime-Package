@@ -353,6 +353,13 @@
 			<key>name</key>
 			<string>keyword.control.if.swift</string>
 		</dict>
+		<key>implicit-parameter-name</key>
+		<dict>
+			<key>comment</key>
+			<string>implicit-parameter-name</string>
+			<key>name</key>
+			<string>variable.parameter.swift</string>
+		</dict>
 		<key>import-declaration</key>
 		<dict>
 			<key>captures</key>
@@ -376,7 +383,7 @@
 			<key>comment</key>
 			<string>import-declaration</string>
 			<key>match</key>
-			<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?(\w+)</string>
+			<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?([\w^0-9][\w]*)</string>
 			<key>name</key>
 			<string>meta.import.swift</string>
 		</dict>
@@ -780,7 +787,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>$self</string>
+							<string>source.swift</string>
 						</dict>
 					</array>
 				</dict>
