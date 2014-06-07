@@ -100,6 +100,49 @@
             "match": "\\b(Int|Float|Double|String|Bool|Character)\\b", 
             "comment": "Primitive types"
         }, 
+        "attribute": {
+            "name": "meta.attribute.swift", 
+            "patterns": [
+                {
+                    "contentName": "meta.attribute.arguments.swift", 
+                    "begin": "((@)\\w+)(\\()", 
+                    "beginCaptures": {
+                        "3": {
+                            "name": "punctuation.definition.attribute-arguments.begin.swift"
+                        }, 
+                        "2": {
+                            "name": "punctuation.definition.attribute.swift"
+                        }, 
+                        "1": {
+                            "name": "storage.modifier.attribute.swift"
+                        }
+                    }, 
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.attribute-arguments.end.swift"
+                        }
+                    }, 
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ], 
+                    "end": "\\)"
+                }, 
+                {
+                    "match": "((@)\\w+)", 
+                    "captures": {
+                        "2": {
+                            "name": "punctuation.definition.attribute.swift"
+                        }, 
+                        "1": {
+                            "name": "storage.modifier.attribute.swift"
+                        }
+                    }
+                }
+            ], 
+            "comment": "attribute"
+        }, 
         "collection-type": {
             "patterns": [
                 {
@@ -491,6 +534,9 @@
     "patterns": [
         {
             "include": "#comment"
+        }, 
+        {
+            "include": "#attribute"
         }, 
         {
             "include": "#literal"

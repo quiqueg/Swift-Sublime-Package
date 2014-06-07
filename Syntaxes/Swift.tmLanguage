@@ -20,6 +20,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#attribute</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#literal</string>
 		</dict>
 		<dict>
@@ -111,6 +115,74 @@
 			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+|\-|\*|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\^|\||&amp;&amp;|\|\|)?=(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
 			<key>name</key>
 			<string>keyword.operator.assignment.swift</string>
+		</dict>
+		<key>attribute</key>
+		<dict>
+			<key>comment</key>
+			<string>attribute</string>
+			<key>name</key>
+			<string>meta.attribute.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>((@)\w+)(\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.attribute.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.attribute.swift</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.attribute-arguments.begin.swift</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>meta.attribute.arguments.swift</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.attribute-arguments.end.swift</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.attribute.swift</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.attribute.swift</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((@)\w+)</string>
+				</dict>
+			</array>
 		</dict>
 		<key>bitwise-operator</key>
 		<dict>

@@ -1,6 +1,6 @@
 # author: Matt Alexander - matt@queg.net
-# [PackageDev] target_format: plist, source_format: yaml, ext: tmLanguage
 # [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
+# [PackageDev] target_format: plist, source_format: yaml, ext: tmLanguage
 ---
 name: Swift
 scopeName: source.swift
@@ -11,6 +11,7 @@ keyEquivalent: ^~S
 
 patterns:
 - include: '#comment'
+- include: '#attribute'
 - include: '#literal'
 - include: '#operator'
 - include: '#import-declaration'
@@ -278,6 +279,26 @@ repository:
     patterns:
       - include: $self
 
+# Attributes
+  attribute:
+    comment: attribute
+    name: meta.attribute.swift
+    patterns:
+    - begin: ((@)\w+)(\()
+      end: \)
+      contentName: meta.attribute.arguments.swift
+      beginCaptures:
+        '1': { name: storage.modifier.attribute.swift }
+        '2': { name: punctuation.definition.attribute.swift }
+        '3': { name: punctuation.definition.attribute-arguments.begin.swift }
+      endCaptures:
+        '0': { name: punctuation.definition.attribute-arguments.end.swift }
+      patterns:
+      - include: $self
+    - match: ((@)\w+)
+      captures:
+        '1': { name: storage.modifier.attribute.swift }
+        '2': { name: punctuation.definition.attribute.swift }
 
 # Comments
   comment:
