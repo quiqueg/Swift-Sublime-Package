@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 switch ${1:control expression} {
-case: ${2:pattern}:
+case ${2:pattern}:
 	$3
 }
 ]]></content>
