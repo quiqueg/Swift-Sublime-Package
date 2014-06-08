@@ -1,6 +1,6 @@
 # author: Matt Alexander - matt@queg.net
-# [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
 # [PackageDev] target_format: plist, source_format: yaml, ext: tmLanguage
+# [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
 ---
 name: Swift
 scopeName: source.swift
@@ -15,6 +15,7 @@ patterns:
 - include: '#literal'
 - include: '#operator'
 - include: '#import-declaration'
+- include: '#function-declaration'
 - include: '#storage-type'
 - include: '#keyword'
 - include: '#primitive-type'
@@ -24,10 +25,6 @@ patterns:
 - include: '#boolean'
 
 repository:
-
-# Identifiers
-
-
 
 # Keywords
   keyword:
@@ -223,6 +220,15 @@ repository:
 
 
 # Type names
+  type:
+    comment: type
+    patterns:
+    - include: '#primitive-type'
+    - include: '#collection-type'
+    - include: '#array-type'
+    - include: '#dictionary-type'
+    - include: '#optional-type'
+    - include: 'protocol-composition-type'
   primitive-type:
     comment: Primitive types
     name: support.type.swift
@@ -299,6 +305,72 @@ repository:
       captures:
         '1': { name: storage.modifier.attribute.swift }
         '2': { name: punctuation.definition.attribute.swift }
+
+
+# Function Declaration
+  function-declaration:
+    comment: function-declaration
+    name: meta.function-declaration.swift
+    begin: \b(func)\s+(\w[\d\w]*|[/=\-+!*%<>&|\^~.]+)\s*(?=\(|<)
+    end: (?<=\})
+    beginCaptures:
+      '1': { name: storage.type.function.swift }
+      '2': { name: entity.type.funciton.swift }
+    patterns:
+    - include: '#generic-parameter-clause'
+    - include: '#parameter-clause'
+    - include: '#function-result'
+    - include: '#function-body'
+  parameter-clause:
+    comment: parameter-clause
+    name: meta.parameter-clause.swift
+    begin: (\()
+    end: (\))
+    beginCaptures:
+      '1': { name: punctuation.definition.function-arguments.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.definition.function-arguments.end.swift }
+    patterns:
+    - include: $self
+  function-result:
+    comment: function-result
+    name: meta.function-result.swift
+    begin: (?<![/=\-+!*%<>&|\^~.])(\->)(?![/=\-+!*%<>&|\^~.])\s*
+    end: \s*(?=\{)
+    beginCaptures:
+      '1': { name: keyword.operator.function-result.swift }
+    patterns:
+    - include: '#type'
+  function-body:
+    comment: function-body
+    name: meta.function-body.swift
+    patterns:
+    - include: '#code-block'
+
+
+  generic-parameter-clause:
+    comment: generic-parameter-clause
+    name: meta.generic-parameter-clause.swift
+    begin: (<)
+    end: (>)
+    beginCaptures:
+      '1': { name: punctuation.definition.generic-parameter-clause.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.definition.generic-parameter-clause.end.swift }
+    patterns:
+    - include: $self
+
+  code-block:
+    comment: code-block
+    begin: (\{)
+    end: (\})
+    beginCaptures:
+      '1': { name: punctuation.definition.code-block.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.definition.code-block.end.swift }
+    patterns:
+    - include: $self
+
 
 # Comments
   comment:

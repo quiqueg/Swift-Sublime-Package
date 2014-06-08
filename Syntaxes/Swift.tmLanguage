@@ -36,6 +36,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#function-declaration</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#storage-type</string>
 		</dict>
 		<dict>
@@ -241,6 +245,38 @@
 				</dict>
 			</array>
 		</dict>
+		<key>code-block</key>
+		<dict>
+			<key>begin</key>
+			<string>(\{)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.code-block.begin.swift</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>code-block</string>
+			<key>end</key>
+			<string>(\})</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.code-block.end.swift</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
 		<key>collection-type</key>
 		<dict>
 			<key>comment</key>
@@ -413,6 +449,123 @@
 					<string>floating-point-literal -&gt; (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)</string>
 					<key>match</key>
 					<string>\b(0x\h[\h_]*)(\.(0x\h[\h_]*))?([pP][+\-]?(0x\h[\h_]*))\b</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function-body</key>
+		<dict>
+			<key>comment</key>
+			<string>function-body</string>
+			<key>name</key>
+			<string>meta.function-body.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#code-block</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function-declaration</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(func)\s+(\w[\d\w]*|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.swift</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.type.funciton.swift</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>function-declaration</string>
+			<key>end</key>
+			<string>(?&lt;=\})</string>
+			<key>name</key>
+			<string>meta.function-declaration.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#generic-parameter-clause</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#parameter-clause</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function-result</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function-body</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function-result</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(\-&gt;)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.function-result.swift</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>function-result</string>
+			<key>end</key>
+			<string>\s*(?=\{)</string>
+			<key>name</key>
+			<string>meta.function-result.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#type</string>
+				</dict>
+			</array>
+		</dict>
+		<key>generic-parameter-clause</key>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.generic-parameter-clause.begin.swift</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>generic-parameter-clause</string>
+			<key>end</key>
+			<string>(&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.generic-parameter-clause.end.swift</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.generic-parameter-clause.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
 				</dict>
 			</array>
 		</dict>
@@ -726,6 +879,40 @@
 			<key>name</key>
 			<string>keyword.operator.overflow.swift</string>
 		</dict>
+		<key>parameter-clause</key>
+		<dict>
+			<key>begin</key>
+			<string>(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function-arguments.begin.swift</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>parameter-clause</string>
+			<key>end</key>
+			<string>(\))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function-arguments.end.swift</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.parameter-clause.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
 		<key>primitive-type</key>
 		<dict>
 			<key>comment</key>
@@ -892,6 +1079,38 @@
 			<string>(?&lt;=[\s(\[{,;:])(\?|:)(?=[\s)\]},;:])</string>
 			<key>name</key>
 			<string>keyword.operator.ternary.swift</string>
+		</dict>
+		<key>type</key>
+		<dict>
+			<key>comment</key>
+			<string>type</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#primitive-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#collection-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#array-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#dictionary-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#optional-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>protocol-composition-type</string>
+				</dict>
+			</array>
 		</dict>
 		<key>type-casting-operator</key>
 		<dict>
