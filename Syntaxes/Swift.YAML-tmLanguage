@@ -14,17 +14,20 @@ patterns:
 - include: '#attribute'
 - include: '#literal'
 - include: '#operator'
-- include: '#import-declaration'
-- include: '#function-declaration'
+- include: '#declaration'
 - include: '#storage-type'
 - include: '#keyword'
-- include: '#primitive-type'
-- include: '#collection-type'
-- include: '#optional-type'
-- include: '#protocol-composition-type'
+- include: '#type'
 - include: '#boolean'
 
 repository:
+
+# Identifier
+  identifier:
+    comment: identifier
+    name: meta.identifier.swift
+    match: (\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B)
+
 
 # Keywords
   keyword:
@@ -83,20 +86,6 @@ repository:
     match: \b(var|func|let|class|enum|struct|protocol|extension|typealias)\b
 
 
-# Import Declaration
-  import-declaration:
-    comment: import-declaration
-    name: meta.import.swift
-    match: \b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?([\w^0-9][\w]*)
-    captures:
-      '1': { name: keyword.other.import.swift }
-      '2': { name: storage.modifier.swift }
-      '3': { name: support.type.module.import.swift }
-
-  implicit-parameter-name:
-    comment: implicit-parameter-name
-    name: variable.parameter.swift
-
 # Operators
   operator:
     patterns:
@@ -114,31 +103,31 @@ repository:
     - include: '#custom-operator'
   comparative-operator:
     name: keyword.operator.comparative.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)((=|!)==?|(<|>)=?|~=)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])((=|!)==?|(<|>)=?|~=)(?![/=\-+!*%<>&|\^~.])
   assignment-operator:
     name: keyword.operator.assignment.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(\+|\-|\*|\/|%|<<|>>|&|\^|\||&&|\|\|)?=(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])(\+|\-|\*|\/|%|<<|>>|&|\^|\||&&|\|\|)?=(?![/=\-+!*%<>&|\^~.])
   logical-operator:
     name: keyword.operator.logical.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(!|&&|\|\|)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])(!|&&|\|\|)(?![/=\-+!*%<>&|\^~.])
   remainder-operator:
     name: keyword.operator.remainder.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\%(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])\%(?![/=\-+!*%<>&|\^~.])
   increment-decrement-operator:
     name: keyword.operator.increment-or-decrement.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(\+\+|\-\-)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])(\+\+|\-\-)(?![/=\-+!*%<>&|\^~.])
   overflow-operator:
     name: keyword.operator.overflow.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\&(\+|\-|\*|\/|%)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])\&(\+|\-|\*|\/|%)(?![/=\-+!*%<>&|\^~.])
   range-operator:
     name: keyword.operator.range.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)\.\.(?:\.)?(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])\.\.(?:\.)?(?![/=\-+!*%<>&|\^~.])
   arithmetic-operator:
     name: keyword.operator.arithmetic.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(\+|\-|\*|\/)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])(\+|\-|\*|\/)(?![/=\-+!*%<>&|\^~.])
   bitwise-operator:
     name: keyword.operator.bitwise.swift
-    match: (?<!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)(&|\||\^|<<|>>)(?!\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)
+    match: (?<![/=\-+!*%<>&|\^~.])(&|\||\^|<<|>>)(?![/=\-+!*%<>&|\^~.])
   ternary-operator:
     name: keyword.operator.ternary.swift
     match: (?<=[\s(\[{,;:])(\?|:)(?=[\s)\]},;:])
@@ -148,11 +137,11 @@ repository:
   custom-operator:
     patterns:
     - name: keyword.operator.custom.prefix.unary.swift
-      match: (?<=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)++(?![\s)\]},;:])
+      match: (?<=[\s(\[{,;:])([/=\-+!*%<>&|\^~.]++)(?![\s)\]},;:])
     - name: keyword.operator.custom.postfix.unary.swift
-      match: (?<![\s(\[{,;:])(\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)++(?![\s)\]},;:\.])
+      match: (?<![\s(\[{,;:])([/=\-+!*%<>&|\^~.]++)(?![\s)\]},;:\.])
     - name: keyword.operator.custom.binary.swift
-      match: (?<=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|<|>|&|\||\^|~|\.)++(?=[\s)\]},;:])
+      match: (?<=[\s(\[{,;:])([/=\-+!*%<>&|\^~.]++)(?=[\s)\]},;:])
 
 
 # Literal Expressions
@@ -173,7 +162,7 @@ repository:
       match: (\B\-|\b)(0o[0-7][0-7_]*)\b
     - comment: decimal-literal
       name: constant.numeric.integer.decimal.swift
-      match: (\B\-|\b)(\d[\d_]*)\b
+      match: (\B\-|\b)([0-9][0-9_]*)\b
     - comment: hexadecimal-literal
       name: constant.numeric.integer.hexadecimal.swift
       match: (\B\-|\b)(0x\h[\h_]*)\b
@@ -181,7 +170,7 @@ repository:
     name: constant.numeric.floating-point.swift
     patterns:
     - comment: floating-point-literal -> (decimal-literal)(decimal-fraction)?(decimal-exponent)?
-      match: \b(\d[\d_]*)(\.(\d[\d_]*))?([eE][+\-]?(\d[\d_]*))?\b
+      match: \b([0-9][0-9_]*)(\.([0-9][0-9_]*))?([eE][+\-]?([0-9][0-9_]*))?\b
     - comment: floating-point-literal -> (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)
       match: \b(0x\h[\h_]*)(\.(0x\h[\h_]*))?([pP][+\-]?(0x\h[\h_]*))\b
   string-literal:
@@ -195,11 +184,11 @@ repository:
     patterns:
     - name: constant.character.escape.swift
       match: \\([0tnr\"\'\\]|x\h{2}|u\h{4}|U\h{8})
-    - name: meta.expression.swift
-      begin: \\(\()
+    - contentName: meta.expression.swift
+      begin: (\\\()
       end: (\))
       beginCaptures:
-        '0': { name: support.punctuation.expression.begin.swift }
+        '1': { name: support.punctuation.expression.begin.swift }
       endCaptures:
         '1': { name: support.punctuation.expression.end.swift }
       patterns:
@@ -225,8 +214,6 @@ repository:
     patterns:
     - include: '#primitive-type'
     - include: '#collection-type'
-    - include: '#array-type'
-    - include: '#dictionary-type'
     - include: '#optional-type'
     - include: 'protocol-composition-type'
   primitive-type:
@@ -290,7 +277,7 @@ repository:
     comment: attribute
     name: meta.attribute.swift
     patterns:
-    - begin: ((@)\w+)(\()
+    - begin: ((@)(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B))(\()
       end: \)
       contentName: meta.attribute.arguments.swift
       beginCaptures:
@@ -301,17 +288,35 @@ repository:
         '0': { name: punctuation.definition.attribute-arguments.end.swift }
       patterns:
       - include: $self
-    - match: ((@)\w+)
+    - match: ((@)(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B))
       captures:
         '1': { name: storage.modifier.attribute.swift }
         '2': { name: punctuation.definition.attribute.swift }
 
 
+# Declarations
+  declaration:
+    comment: declaration
+    name: meta.declaration.swift
+    patterns:
+    - include: '#import-declaration'
+    - include: '#function-declaration'
+
+# Import Declaration
+  import-declaration:
+    comment: import-declaration
+    name: meta.import.swift
+    match: \b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?((?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+)(?:\.(?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+))*)
+    captures:
+      '1': { name: keyword.other.import.swift }
+      '2': { name: storage.modifier.swift }
+      '3': { name: support.type.module.import.swift }
+
 # Function Declaration
   function-declaration:
     comment: function-declaration
     name: meta.function-declaration.swift
-    begin: \b(func)\s+(\w[\d\w]*|[/=\-+!*%<>&|\^~.]+)\s*(?=\(|<)
+    begin: \b(func)\s+(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+)\s*(?=\(|<)
     end: (?<=\})
     beginCaptures:
       '1': { name: storage.type.function.swift }

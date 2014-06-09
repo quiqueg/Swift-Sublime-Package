@@ -32,11 +32,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#import-declaration</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#function-declaration</string>
+			<string>#declaration</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -48,19 +44,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#primitive-type</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#collection-type</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#optional-type</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#protocol-composition-type</string>
+			<string>#type</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -72,7 +56,7 @@
 		<key>arithmetic-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+|\-|\*|\/)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(\+|\-|\*|\/)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.arithmetic.swift</string>
 		</dict>
@@ -116,7 +100,7 @@
 		<key>assignment-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+|\-|\*|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\^|\||&amp;&amp;|\|\|)?=(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(\+|\-|\*|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\^|\||&amp;&amp;|\|\|)?=(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.assignment.swift</string>
 		</dict>
@@ -130,7 +114,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>((@)\w+)(\()</string>
+					<string>((@)(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B))(\()</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -184,14 +168,14 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>((@)\w+)</string>
+					<string>((@)(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B))</string>
 				</dict>
 			</array>
 		</dict>
 		<key>bitwise-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(&amp;|\||\^|&lt;&lt;|&gt;&gt;)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(&amp;|\||\^|&lt;&lt;|&gt;&gt;)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.bitwise.swift</string>
 		</dict>
@@ -322,7 +306,7 @@
 		<key>comparative-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)((=|!)==?|(&lt;|&gt;)=?|~=)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])((=|!)==?|(&lt;|&gt;)=?|~=)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.comparative.swift</string>
 		</dict>
@@ -341,21 +325,39 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?![\s)\]},;:])</string>
+					<string>(?&lt;=[\s(\[{,;:])([/=\-+!*%&lt;&gt;&amp;|\^~.]++)(?![\s)\]},;:])</string>
 					<key>name</key>
 					<string>keyword.operator.custom.prefix.unary.swift</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;![\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?![\s)\]},;:\.])</string>
+					<string>(?&lt;![\s(\[{,;:])([/=\-+!*%&lt;&gt;&amp;|\^~.]++)(?![\s)\]},;:\.])</string>
 					<key>name</key>
 					<string>keyword.operator.custom.postfix.unary.swift</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;=[\s(\[{,;:])(\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)++(?=[\s)\]},;:])</string>
+					<string>(?&lt;=[\s(\[{,;:])([/=\-+!*%&lt;&gt;&amp;|\^~.]++)(?=[\s)\]},;:])</string>
 					<key>name</key>
 					<string>keyword.operator.custom.binary.swift</string>
+				</dict>
+			</array>
+		</dict>
+		<key>declaration</key>
+		<dict>
+			<key>comment</key>
+			<string>declaration</string>
+			<key>name</key>
+			<string>meta.declaration.swift</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#import-declaration</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function-declaration</string>
 				</dict>
 			</array>
 		</dict>
@@ -442,7 +444,7 @@
 					<key>comment</key>
 					<string>floating-point-literal -&gt; (decimal-literal)(decimal-fraction)?(decimal-exponent)?</string>
 					<key>match</key>
-					<string>\b(\d[\d_]*)(\.(\d[\d_]*))?([eE][+\-]?(\d[\d_]*))?\b</string>
+					<string>\b([0-9][0-9_]*)(\.([0-9][0-9_]*))?([eE][+\-]?([0-9][0-9_]*))?\b</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -469,7 +471,7 @@
 		<key>function-declaration</key>
 		<dict>
 			<key>begin</key>
-			<string>\b(func)\s+(\w[\d\w]*|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
+			<string>\b(func)\s+(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?=\(|&lt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -569,6 +571,15 @@
 				</dict>
 			</array>
 		</dict>
+		<key>identifier</key>
+		<dict>
+			<key>comment</key>
+			<string>identifier</string>
+			<key>match</key>
+			<string>(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B)</string>
+			<key>name</key>
+			<string>meta.identifier.swift</string>
+		</dict>
 		<key>if-statement-keyword</key>
 		<dict>
 			<key>comment</key>
@@ -577,13 +588,6 @@
 			<string>\b(if|else)\b</string>
 			<key>name</key>
 			<string>keyword.control.if.swift</string>
-		</dict>
-		<key>implicit-parameter-name</key>
-		<dict>
-			<key>comment</key>
-			<string>implicit-parameter-name</string>
-			<key>name</key>
-			<string>variable.parameter.swift</string>
 		</dict>
 		<key>import-declaration</key>
 		<dict>
@@ -608,7 +612,7 @@
 			<key>comment</key>
 			<string>import-declaration</string>
 			<key>match</key>
-			<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?([\w^0-9][\w]*)</string>
+			<string>\b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?((?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)(?:\.(?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+))*)</string>
 			<key>name</key>
 			<string>meta.import.swift</string>
 		</dict>
@@ -632,7 +636,7 @@
 		<key>increment-decrement-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(\+\+|\-\-)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(\+\+|\-\-)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.increment-or-decrement.swift</string>
 		</dict>
@@ -662,7 +666,7 @@
 					<key>comment</key>
 					<string>decimal-literal</string>
 					<key>match</key>
-					<string>(\B\-|\b)(\d[\d_]*)\b</string>
+					<string>(\B\-|\b)([0-9][0-9_]*)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.decimal.swift</string>
 				</dict>
@@ -759,7 +763,7 @@
 		<key>logical-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)(!|&amp;&amp;|\|\|)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])(!|&amp;&amp;|\|\|)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.logical.swift</string>
 		</dict>
@@ -875,7 +879,7 @@
 		<key>overflow-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\&amp;(\+|\-|\*|\/|%)(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])\&amp;(\+|\-|\*|\/|%)(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.overflow.swift</string>
 		</dict>
@@ -962,14 +966,14 @@
 		<key>range-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\.\.(?:\.)?(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])\.\.(?:\.)?(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.range.swift</string>
 		</dict>
 		<key>remainder-operator</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)\%(?!\/|=|\-|\+|!|\*|%|&lt;|&gt;|&amp;|\||\^|~|\.)</string>
+			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])\%(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.remainder.swift</string>
 		</dict>
@@ -1021,15 +1025,17 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\\(\()</string>
+					<string>(\\\()</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>0</key>
+						<key>1</key>
 						<dict>
 							<key>name</key>
 							<string>support.punctuation.expression.begin.swift</string>
 						</dict>
 					</dict>
+					<key>contentName</key>
+					<string>meta.expression.swift</string>
 					<key>end</key>
 					<string>(\))</string>
 					<key>endCaptures</key>
@@ -1040,8 +1046,6 @@
 							<string>support.punctuation.expression.end.swift</string>
 						</dict>
 					</dict>
-					<key>name</key>
-					<string>meta.expression.swift</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1093,14 +1097,6 @@
 				<dict>
 					<key>include</key>
 					<string>#collection-type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#array-type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#dictionary-type</string>
 				</dict>
 				<dict>
 					<key>include</key>
