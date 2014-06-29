@@ -157,6 +157,11 @@
             }, 
             "comment": "In-line comment"
         }, 
+        "shebang-line": {
+            "name": "comment.line.number-sign.swift",
+            "match": "(^#!\/usr\/bin\/env.*$)",
+            "comment": "Shebang line"
+        },
         "assignment-operator": {
             "name": "keyword.operator.assignment.swift", 
             "match": "(?<![/=\\-+!*%<>&|\\^~.])(\\+|\\-|\\*|\\/|%|<<|>>|&|\\^|\\||&&|\\|\\|)?=(?![/=\\-+!*%<>&|\\^~.])"
@@ -374,6 +379,9 @@
                 }, 
                 {
                     "include": "#in-line-comment"
+                },
+                {
+                    "include": "#shebang-line"
                 }
             ], 
             "comment": "All comment types"
