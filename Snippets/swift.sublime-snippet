@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+#!/usr/bin/env xcrun swift -i
+
+// To pass arguments to the script, add '--' befor the arguments:
+// \$ ./script.swift -- arg1 arg2 arg3
+
+]]></content>
+	<tabTrigger>swift</tabTrigger>
+	<scope>source.swift</scope>
+	<description>#!/usr/bin/env xcrun swift -i</description>
+</snippet>
