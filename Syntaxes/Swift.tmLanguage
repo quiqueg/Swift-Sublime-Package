@@ -301,6 +301,10 @@
 					<key>include</key>
 					<string>#in-line-comment</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#shebang-line</string>
+				</dict>
 			</array>
 		</dict>
 		<key>comparative-operator</key>
@@ -976,6 +980,15 @@
 			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])\%(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.remainder.swift</string>
+		</dict>
+		<key>shebang-line</key>
+		<dict>
+			<key>comment</key>
+			<string>Shebang line</string>
+			<key>match</key>
+			<string>(^#!/usr/bin/env.*$)</string>
+			<key>name</key>
+			<string>comment.line.number-sign.swift</string>
 		</dict>
 		<key>special-literal</key>
 		<dict>
