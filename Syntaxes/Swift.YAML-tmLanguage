@@ -8,8 +8,10 @@ author: Matt Alexander - matt@queg.net
 fileTypes: [swift]
 uuid: 7efa1168-97c3-4433-8dd7-15b99bf3bb53
 keyEquivalent: ^~S
+firstLineMatch: ^#!/.*\bswift
 
 patterns:
+- include: '#shebang-line'
 - include: '#comment'
 - include: '#attribute'
 - include: '#literal'
@@ -408,5 +410,12 @@ repository:
     match: (//).*
     captures:
       '1': { name: punctuation.definition.comment.line.double-slash.swift }
+
+  shebang-line:
+    comment: Shebang line
+    name: comment.line.shebang.swift
+    match: ^(#!).*$
+    captures:
+      '1': { name: punctuation.definition.comment.line.shebang.swift }
 
 ...

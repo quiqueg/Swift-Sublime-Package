@@ -8,12 +8,18 @@
 	<array>
 		<string>swift</string>
 	</array>
+	<key>firstLineMatch</key>
+	<string>^#!/.*\bswift</string>
 	<key>keyEquivalent</key>
 	<string>^~S</string>
 	<key>name</key>
 	<string>Swift</string>
 	<key>patterns</key>
 	<array>
+		<dict>
+			<key>include</key>
+			<string>#shebang-line</string>
+		</dict>
 		<dict>
 			<key>include</key>
 			<string>#comment</string>
@@ -300,10 +306,6 @@
 				<dict>
 					<key>include</key>
 					<string>#in-line-comment</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#shebang-line</string>
 				</dict>
 			</array>
 		</dict>
@@ -983,12 +985,20 @@
 		</dict>
 		<key>shebang-line</key>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.line.shebang.swift</string>
+				</dict>
+			</dict>
 			<key>comment</key>
 			<string>Shebang line</string>
 			<key>match</key>
-			<string>(^#!/usr/bin/env.*$)</string>
+			<string>^(#!).*$</string>
 			<key>name</key>
-			<string>comment.line.number-sign.swift</string>
+			<string>comment.line.shebang.swift</string>
 		</dict>
 		<key>special-literal</key>
 		<dict>
