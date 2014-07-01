@@ -8,12 +8,18 @@
 	<array>
 		<string>swift</string>
 	</array>
+	<key>firstLineMatch</key>
+	<string>^#!/.*\bswift</string>
 	<key>keyEquivalent</key>
 	<string>^~S</string>
 	<key>name</key>
 	<string>Swift</string>
 	<key>patterns</key>
 	<array>
+		<dict>
+			<key>include</key>
+			<string>#shebang-line</string>
+		</dict>
 		<dict>
 			<key>include</key>
 			<string>#comment</string>
@@ -976,6 +982,23 @@
 			<string>(?&lt;![/=\-+!*%&lt;&gt;&amp;|\^~.])\%(?![/=\-+!*%&lt;&gt;&amp;|\^~.])</string>
 			<key>name</key>
 			<string>keyword.operator.remainder.swift</string>
+		</dict>
+		<key>shebang-line</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.line.shebang.swift</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Shebang line</string>
+			<key>match</key>
+			<string>^(#!).*$</string>
+			<key>name</key>
+			<string>comment.line.shebang.swift</string>
 		</dict>
 		<key>special-literal</key>
 		<dict>
