@@ -4,7 +4,7 @@
       [
         { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
         { "key": "selector", "operator": "equal", "operand": "source.swift meta.literal.string", "match_all": true },
-        { "key": "preceding_text", "operator": "regex_match", "operand": ".*(?:[^\\\\](?:[\\\\]{2})*+\\\\)$", "match_all": true },
+        { "key": "preceding_text", "operator": "regex_match", "operand": ".*(?:[^\\\\](?:[\\\\]{2})*+\\\\)$", "match_all": true }
       ]
   }
 ]
