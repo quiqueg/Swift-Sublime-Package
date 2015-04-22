@@ -215,13 +215,18 @@ repository:
     comment: type
     patterns:
     - include: '#primitive-type'
+    - include: '#integer-type'
     - include: '#collection-type'
     - include: '#optional-type'
     - include: 'protocol-composition-type'
   primitive-type:
     comment: Primitive types
     name: support.type.swift
-    match: \b(Int|Float|Double|String|Bool|Character)\b
+    match: \b(Void|Float|Double|String|Bool|Character|UnicodeScalar)\b
+  integer-type:
+    comment: Int types
+    name: support.type.swift
+    match: \bU?Int(8|16|32|64)?\b
   collection-type:
     comment: Collection types
     patterns:
