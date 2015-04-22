@@ -767,6 +767,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#nil-literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#string-literal</string>
 				</dict>
 				<dict>
@@ -790,6 +794,15 @@
 			<string>\b(while|do|for|in)\b</string>
 			<key>name</key>
 			<string>keyword.control.loop.swift</string>
+		</dict>
+		<key>nil-literal</key>
+		<dict>
+			<key>comment</key>
+			<string>nil-literal</string>
+			<key>match</key>
+			<string>\bnil\b</string>
+			<key>name</key>
+			<string>constant.nil.swift</string>
 		</dict>
 		<key>operator</key>
 		<dict>

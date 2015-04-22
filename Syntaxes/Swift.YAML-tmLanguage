@@ -151,6 +151,7 @@ repository:
     patterns:
     - include: '#integer-literal'
     - include: '#floating-point-literal'
+    - include: '#nil-literal'
     - include: '#string-literal'
     - include: '#special-literal'
   integer-literal:
@@ -175,6 +176,10 @@ repository:
       match: \b([0-9][0-9_]*)(\.([0-9][0-9_]*))?([eE][+\-]?([0-9][0-9_]*))?\b
     - comment: floating-point-literal -> (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)
       match: \b(0x\h[\h_]*)(\.(0x\h[\h_]*))?([pP][+\-]?(0x\h[\h_]*))\b
+  nil-literal:
+    comment: nil-literal
+    name: constant.nil.swift
+    match: \bnil\b
   string-literal:
     name: meta.literal.string.swift
     begin: \"
