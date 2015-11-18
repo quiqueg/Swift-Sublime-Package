@@ -686,15 +686,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>integer-type</key>
-		<dict>
-			<key>comment</key>
-			<string>Int types</string>
-			<key>match</key>
-			<string>\bU?Int(8|16|32|64)?\b</string>
-			<key>name</key>
-			<string>support.type.swift</string>
-		</dict>
 		<key>keyword</key>
 		<dict>
 			<key>patterns</key>
@@ -713,6 +704,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#catch-statement-keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#declaration-specifier</string>
 				</dict>
 				<dict>
@@ -723,7 +718,7 @@
 					<key>comment</key>
 					<string>declaration keyword</string>
 					<key>match</key>
-					<string>\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var)\b</string>
+					<string>\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws)\b</string>
 					<key>name</key>
 					<string>keyword.declaration.swift</string>
 				</dict>
@@ -731,7 +726,7 @@
 					<key>comment</key>
 					<string>statement keyword</string>
 					<key>match</key>
-					<string>\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while)\b</string>
+					<string>\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|defer|guard|try|throw)\b</string>
 					<key>name</key>
 					<string>keyword.statement.swift</string>
 				</dict>
@@ -767,10 +762,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#nil-literal</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#string-literal</string>
 				</dict>
 				<dict>
@@ -791,18 +782,18 @@
 			<key>comment</key>
 			<string>loop-statement</string>
 			<key>match</key>
-			<string>\b(while|do|for|in)\b</string>
+			<string>\b(while|repeat|for|in)\b</string>
 			<key>name</key>
 			<string>keyword.control.loop.swift</string>
 		</dict>
-		<key>nil-literal</key>
+		<key>catch-statement-keyword</key>
 		<dict>
 			<key>comment</key>
-			<string>nil-literal</string>
+			<string>catch-statement</string>
 			<key>match</key>
-			<string>\bnil\b</string>
+			<string>\b(catch|do)\b</string>
 			<key>name</key>
-			<string>constant.nil.swift</string>
+			<string>keyword.control.catch.swift</string>
 		</dict>
 		<key>operator</key>
 		<dict>
@@ -950,7 +941,7 @@
 			<key>comment</key>
 			<string>Primitive types</string>
 			<key>match</key>
-			<string>\b(Void|Float|Double|String|Bool|Character|UnicodeScalar)\b</string>
+			<string>\b(Int|Float|Double|String|Bool|Character|Void)\b</string>
 			<key>name</key>
 			<string>support.type.swift</string>
 		</dict>
@@ -1138,10 +1129,6 @@
 				<dict>
 					<key>include</key>
 					<string>#primitive-type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#integer-type</string>
 				</dict>
 				<dict>
 					<key>include</key>
