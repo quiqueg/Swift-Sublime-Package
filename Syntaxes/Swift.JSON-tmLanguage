@@ -77,8 +77,13 @@
         }, 
         "loop-statement-keyword": {
             "name": "keyword.control.loop.swift", 
-            "match": "\\b(while|do|for|in)\\b", 
+            "match": "\\b(while|repeat|for|in)\\b", 
             "comment": "loop-statement"
+        }, 
+        "catch-statement-keyword": {
+            "name": "keyword.control.catch.swift", 
+            "match": "\\b(catch|do)\\b", 
+            "comment": "catch-statement"
         }, 
         "function-result": {
             "name": "meta.function-result.swift", 
@@ -108,6 +113,9 @@
                     "include": "#loop-statement-keyword"
                 }, 
                 {
+                    "include": "#catch-statement-keyword"
+                }, 
+                {
                     "include": "#declaration-specifier"
                 }, 
                 {
@@ -115,12 +123,12 @@
                 }, 
                 {
                     "name": "keyword.declaration.swift", 
-                    "match": "\\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var)\\b", 
+                    "match": "\\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws)\\b", 
                     "comment": "declaration keyword"
                 }, 
                 {
                     "name": "keyword.statement.swift", 
-                    "match": "\\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while)\\b", 
+                    "match": "\\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|guard|defer|try|throw)\\b", 
                     "comment": "statement keyword"
                 }, 
                 {
@@ -397,7 +405,7 @@
         }, 
         "primitive-type": {
             "name": "support.type.swift", 
-            "match": "\\b(Int|Float|Double|String|Bool|Character)\\b", 
+            "match": "\\b(Int|Float|Double|String|Bool|Character|Void)\\b", 
             "comment": "Primitive types"
         }, 
         "if-statement-keyword": {
