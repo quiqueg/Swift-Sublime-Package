@@ -762,6 +762,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#nil-literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#string-literal</string>
 				</dict>
 				<dict>
@@ -794,6 +798,15 @@
 			<string>\b(catch|do)\b</string>
 			<key>name</key>
 			<string>keyword.control.catch.swift</string>
+		</dict>
+		<key>nil-literal</key>
+		<dict>
+			<key>comment</key>
+			<string>nil-literal</string>
+			<key>name</key>
+			<string>constant.nil.swift</string>
+			<key>match</key>
+			<string>\bnil\b</string>
 		</dict>
 		<key>operator</key>
 		<dict>

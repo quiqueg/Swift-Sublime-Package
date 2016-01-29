@@ -345,6 +345,9 @@
                     "include": "#floating-point-literal"
                 }, 
                 {
+                    "include": "#nil-literal"
+                }, 
+                {
                     "include": "#string-literal"
                 }, 
                 {
@@ -426,6 +429,11 @@
                 }
             ]
         }, 
+        "nil-literal": {
+            "name": "constant.nil.swift",
+            "match": "\\bnil\\b",
+            "comment": "nil-literal"
+        },
         "operator": {
             "patterns": [
                 {
