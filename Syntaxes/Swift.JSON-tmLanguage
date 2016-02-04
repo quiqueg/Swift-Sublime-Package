@@ -123,7 +123,7 @@
                 }, 
                 {
                     "name": "keyword.declaration.swift", 
-                    "match": "\\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws)\\b", 
+                    "match": "\\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws|lazy)\\b", 
                     "comment": "declaration keyword"
                 }, 
                 {
