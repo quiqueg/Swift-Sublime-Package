@@ -37,14 +37,15 @@ repository:
     - include: '#branch-statement-keyword'
     - include: '#control-transfer-statement-keyword'
     - include: '#loop-statement-keyword'
+    - include: '#catch-statement-keyword'
     - include: '#declaration-specifier'
     - include: '#operator-declaration-keyword'
     - comment: declaration keyword
       name: keyword.declaration.swift
-      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var)\b
+      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws)\b
     - comment: statement keyword
       name: keyword.statement.swift
-      match: \b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while)\b
+      match: \b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|guard|defer|try|throw)\b
     - comment: expression and type keyword
       name: keyword.other.statement.swift
       match: \b(as|dynamicType|is|new|super|self|Self|Type)\b
@@ -71,7 +72,11 @@ repository:
   loop-statement-keyword:
     comment: loop-statement
     name: keyword.control.loop.swift
-    match: \b(while|do|for|in)\b
+    match: \b(while|repeat|for|in)\b
+  catch-statement-keyword:
+    comment: catch-statement
+    name: kewyord.control.catch.swift
+    match: \b(catch|do)\b
   operator-declaration-keyword:
     comment: operator-declaration
     name: keyword.other.operator.swift
@@ -227,7 +232,7 @@ repository:
   primitive-type:
     comment: Primitive types
     name: support.type.swift
-    match: \b(Void|Float|Double|String|Bool|Character|UnicodeScalar)\b
+    match: \b(Int|Float|Double|String|Bool|Character|Void)\b
   integer-type:
     comment: Int types
     name: support.type.swift
