@@ -233,7 +233,7 @@ repository:
     - include: '#integer-type'
     - include: '#collection-type'
     - include: '#optional-type'
-    - include: 'protocol-composition-type'
+    - include: '#protocol-composition-type'
   primitive-type:
     comment: Primitive types
     name: support.type.swift
