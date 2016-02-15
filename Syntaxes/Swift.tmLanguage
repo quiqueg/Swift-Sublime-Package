@@ -59,6 +59,15 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>access-level-modifier</key>
+		<dict>
+			<key>comment</key>
+			<string>access-level-modifier</string>
+			<key>match</key>
+			<string>\b(public|internal|private)\b(?:\(set\))?</string>
+			<key>name</key>
+			<string>keyword.other.access-level-modifier.swift</string>
+		</dict>
 		<key>arithmetic-operator</key>
 		<dict>
 			<key>match</key>
@@ -235,6 +244,15 @@
 				</dict>
 			</array>
 		</dict>
+		<key>catch-statement-keyword</key>
+		<dict>
+			<key>comment</key>
+			<string>catch-statement</string>
+			<key>match</key>
+			<string>\b(catch|do)\b</string>
+			<key>name</key>
+			<string>kewyord.control.catch.swift</string>
+		</dict>
 		<key>code-block</key>
 		<dict>
 			<key>begin</key>
@@ -367,14 +385,14 @@
 				</dict>
 			</array>
 		</dict>
-		<key>declaration-specifier</key>
+		<key>declaration-modifier</key>
 		<dict>
 			<key>comment</key>
-			<string>declaration-specifier</string>
+			<string>declaration-modifier</string>
 			<key>match</key>
-			<string>\b(class|mutating|nonmutating|override|static|unowned((un)?safe)?|weak)\b</string>
+			<string>\b(class|convenience|dynamic|final|lazy|(non)?mutating|optional|override|required|static|unowned((un)?safe)?|weak)\b</string>
 			<key>name</key>
-			<string>keyword.other.declaration-specifier.swift</string>
+			<string>keyword.other.declaration-modifier.swift</string>
 		</dict>
 		<key>dictionary-type</key>
 		<dict>
@@ -686,6 +704,15 @@
 				</dict>
 			</array>
 		</dict>
+		<key>integer-type</key>
+		<dict>
+			<key>comment</key>
+			<string>Int types</string>
+			<key>match</key>
+			<string>\bU?Int(8|16|32|64)?\b</string>
+			<key>name</key>
+			<string>support.type.swift</string>
+		</dict>
 		<key>keyword</key>
 		<dict>
 			<key>patterns</key>
@@ -708,17 +735,21 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#declaration-specifier</string>
+					<string>#operator-declaration-modifier</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#operator-declaration-keyword</string>
+					<string>#declaration-modifier</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#access-level-modifier</string>
 				</dict>
 				<dict>
 					<key>comment</key>
 					<string>declaration keyword</string>
 					<key>match</key>
-					<string>\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws|lazy)\b</string>
+					<string>\b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|throws)\b</string>
 					<key>name</key>
 					<string>keyword.declaration.swift</string>
 				</dict>
@@ -726,7 +757,7 @@
 					<key>comment</key>
 					<string>statement keyword</string>
 					<key>match</key>
-					<string>\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|defer|guard|try|throw)\b</string>
+					<string>\b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|guard|defer|try|throw)\b</string>
 					<key>name</key>
 					<string>keyword.statement.swift</string>
 				</dict>
@@ -790,23 +821,14 @@
 			<key>name</key>
 			<string>keyword.control.loop.swift</string>
 		</dict>
-		<key>catch-statement-keyword</key>
-		<dict>
-			<key>comment</key>
-			<string>catch-statement</string>
-			<key>match</key>
-			<string>\b(catch|do)\b</string>
-			<key>name</key>
-			<string>keyword.control.catch.swift</string>
-		</dict>
 		<key>nil-literal</key>
 		<dict>
 			<key>comment</key>
 			<string>nil-literal</string>
-			<key>name</key>
-			<string>constant.nil.swift</string>
 			<key>match</key>
 			<string>\bnil\b</string>
+			<key>name</key>
+			<string>constant.nil.swift</string>
 		</dict>
 		<key>operator</key>
 		<dict>
@@ -862,7 +884,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>operator-declaration-keyword</key>
+		<key>operator-declaration-modifier</key>
 		<dict>
 			<key>comment</key>
 			<string>operator-declaration</string>
@@ -1145,6 +1167,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#integer-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#collection-type</string>
 				</dict>
 				<dict>
@@ -1153,7 +1179,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>protocol-composition-type</string>
+					<string>#protocol-composition-type</string>
 				</dict>
 			</array>
 		</dict>
