@@ -85,7 +85,7 @@ repository:
   access-level-modifier:
     comment: access-level-modifier
     name: keyword.other.access-level-modifier.swift
-    match: \b(public|internal|private)\b
+    match: \b(public|internal|private)\b(?:\(set\))?
   declaration-modifier:
     comment: declaration-modifier
     name: keyword.other.declaration-modifier.swift
