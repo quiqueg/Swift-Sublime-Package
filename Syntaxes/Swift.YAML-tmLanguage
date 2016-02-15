@@ -38,11 +38,11 @@ repository:
     - include: '#control-transfer-statement-keyword'
     - include: '#loop-statement-keyword'
     - include: '#catch-statement-keyword'
-    - include: '#declaration-specifier'
-    - include: '#operator-declaration-keyword'
+    - include: '#operator-declaration-modifier'
+    - include: '#declaration-modifier'
     - comment: declaration keyword
       name: keyword.declaration.swift
-      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws|lazy)\b
+      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws)\b
     - comment: statement keyword
       name: keyword.statement.swift
       match: \b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|guard|defer|try|throw)\b
@@ -77,14 +77,14 @@ repository:
     comment: catch-statement
     name: kewyord.control.catch.swift
     match: \b(catch|do)\b
-  operator-declaration-keyword:
+  operator-declaration-modifier:
     comment: operator-declaration
     name: keyword.other.operator.swift
     match: \b(operator|prefix|infix|postfix)\b
-  declaration-specifier:
-    comment: declaration-specifier
-    name: keyword.other.declaration-specifier.swift
-    match: \b(class|mutating|nonmutating|override|static|unowned((un)?safe)?|weak)\b
+  declaration-modifier:
+    comment: declaration-modifier
+    name: keyword.other.declaration-modifier.swift
+    match: \b(class|convenience|dynamic|final|lazy|(non)?mutating|optional|override|required|static|unowned((un)?safe)?|weak)\b
 
 
 # Storage types
