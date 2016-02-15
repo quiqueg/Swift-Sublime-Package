@@ -488,7 +488,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.type.funciton.swift</string>
+					<string>entity.type.function.swift</string>
 				</dict>
 			</dict>
 			<key>comment</key>
