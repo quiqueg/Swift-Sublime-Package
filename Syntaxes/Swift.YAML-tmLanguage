@@ -42,7 +42,7 @@ repository:
     - include: '#operator-declaration-keyword'
     - comment: declaration keyword
       name: keyword.declaration.swift
-      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws)\b
+      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|public|private|internal|throws|lazy)\b
     - comment: statement keyword
       name: keyword.statement.swift
       match: \b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|guard|defer|try|throw)\b
