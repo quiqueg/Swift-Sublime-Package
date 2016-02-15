@@ -337,7 +337,7 @@ repository:
     end: (?<=\})
     beginCaptures:
       '1': { name: storage.type.function.swift }
-      '2': { name: entity.type.funciton.swift }
+      '2': { name: entity.type.function.swift }
     patterns:
     - include: '#generic-parameter-clause'
     - include: '#parameter-clause'
