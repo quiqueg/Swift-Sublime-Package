@@ -64,7 +64,7 @@
 			<key>comment</key>
 			<string>access-level-modifier</string>
 			<key>match</key>
-			<string>\b(public|internal|private)\b(?:\(set\))?</string>
+			<string>\b(open|public|internal|fileprivate|private)\b(?:\(set\))?</string>
 			<key>name</key>
 			<string>keyword.other.access-level-modifier.swift</string>
 		</dict>
