@@ -458,7 +458,7 @@
         "access-level-modifier": {
             "comment": "access-level-modifier",
             "name": "keyword.other.access-level-modifier.swift",
-            "match": "\\b(public|internal|private)\\b(?:\\(set\\))?"
+            "match": "\\b(open|public|internal|fileprivate|private)\\b(?:\\(set\\))?"
         },
         "branch-statement-keyword": {
             "patterns": [
