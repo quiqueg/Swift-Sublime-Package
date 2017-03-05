@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+defer {
+	${1:/* statements */}
+}
+]]></content>
+	<tabTrigger>defer</tabTrigger>
+	<scope>source.swift</scope>
+	<description>defer ...</description>
+</snippet>
