@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+guard ${1:/* condition */} else {
+	${2:/* statements */}
+}
+]]></content>
+	<tabTrigger>guard</tabTrigger>
+	<scope>source.swift</scope>
+	<description>guard ...</description>
+</snippet>
