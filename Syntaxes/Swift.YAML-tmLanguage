@@ -1,0 +1,441 @@
+# author: Matt Alexander - 1710128+quiqueg@users.noreply.github.com
+# [PackageDev] target_format: plist, source_format: yaml, ext: tmLanguage
+# [PackageDev] target_format: json, source_format: yaml, ext: JSON-tmLanguage
+---
+name: Swift
+scopeName: source.swift
+author: Matt Alexander - 1710128+quiqueg@users.noreply.github.com
+fileTypes: [swift]
+uuid: 7efa1168-97c3-4433-8dd7-15b99bf3bb53
+keyEquivalent: ^~S
+firstLineMatch: ^#!/.*\bswift
+
+patterns:
+- include: '#shebang-line'
+- include: '#comment'
+- include: '#attribute'
+- include: '#literal'
+- include: '#operator'
+- include: '#declaration'
+- include: '#storage-type'
+- include: '#keyword'
+- include: '#type'
+- include: '#boolean'
+
+repository:
+
+# Identifier
+  identifier:
+    comment: identifier
+    name: meta.identifier.swift
+    match: (\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B)
+
+
+# Keywords
+  keyword:
+    patterns:
+    - include: '#branch-statement-keyword'
+    - include: '#control-transfer-statement-keyword'
+    - include: '#loop-statement-keyword'
+    - include: '#catch-statement-keyword'
+    - include: '#operator-declaration-modifier'
+    - include: '#declaration-modifier'
+    - include: '#access-level-modifier'
+    - comment: declaration keyword
+      name: keyword.declaration.swift
+      match: \b(class|deinit|enum|extension|func|import|init|let|protocol|static|struct|subscript|typealias|var|throws|rethrows)\b
+    - comment: statement keyword
+      name: keyword.statement.swift
+      match: \b(break|case|continue|default|do|else|fallthrough|if|in|for|return|switch|where|while|repeat|catch|guard|defer|try|throw)\b
+    - comment: expression and type keyword
+      name: keyword.other.statement.swift
+      match: \b(as|dynamicType|is|new|super|self|Self|Type)\b
+    - comment: other keyword
+      name: keyword.other.swift
+      match: \b(associativity|didSet|get|infix|inout|left|mutating|none|nonmutating|operator|override|postfix|precedence|prefix|right|set|unowned((un)?safe)?|weak|willSet)\b
+  branch-statement-keyword:
+    name: keyword.control.branch.swift
+    patterns:
+    - include: '#if-statement-keyword'
+    - include: '#switch-statement-keyword'
+  switch-statement-keyword:
+    comment: switch-statement
+    name: keyword.control.switch.swift
+    match: \b(switch|case|default|where)\b
+  if-statement-keyword:
+    comment: if-statement
+    name: keyword.control.if.swift
+    match: \b(if|else)\b
+  control-transfer-statement-keyword:
+    comment: control-transfer-statement
+    name: keyword.control.transfer.swift
+    match: \b(continue|break|fallthrough|return)\b
+  loop-statement-keyword:
+    comment: loop-statement
+    name: keyword.control.loop.swift
+    match: \b(while|repeat|for|in)\b
+  catch-statement-keyword:
+    comment: catch-statement
+    name: kewyord.control.catch.swift
+    match: \b(catch|do)\b
+  operator-declaration-modifier:
+    comment: operator-declaration
+    name: keyword.other.operator.swift
+    match: \b(operator|prefix|infix|postfix)\b
+  access-level-modifier:
+    comment: access-level-modifier
+    name: keyword.other.access-level-modifier.swift
+    match: \b(open|public|internal|fileprivate|private)\b(?:\(set\))?
+  declaration-modifier:
+    comment: declaration-modifier
+    name: keyword.other.declaration-modifier.swift
+    match: \b(class|convenience|dynamic|final|lazy|(non)?mutating|optional|override|required|static|unowned((un)?safe)?|weak)\b
+
+
+# Storage types
+  storage-type:
+    name: storage.type.swift
+    match: \b(var|func|let|class|enum|struct|protocol|extension|typealias)\b
+
+
+# Operators
+  operator:
+    patterns:
+    - include: '#comparative-operator'
+    - include: '#assignment-operator'
+    - include: '#logical-operator'
+    - include: '#remainder-operator'
+    - include: '#increment-decrement-operator'
+    - include: '#overflow-operator'
+    - include: '#range-operator'
+    - include: '#bitwise-operator'
+    - include: '#arithmetic-operator'
+    - include: '#ternary-operator'
+    - include: '#type-casting-operator'
+    - include: '#custom-operator'
+  comparative-operator:
+    name: keyword.operator.comparative.swift
+    match: (?<![/=\-+!*%<>&|\^~.])((=|!)==?|(<|>)=?|~=)(?![/=\-+!*%<>&|\^~.])
+  assignment-operator:
+    name: keyword.operator.assignment.swift
+    match: (?<![/=\-+!*%<>&|\^~.])(\+|\-|\*|\/|%|<<|>>|&|\^|\||&&|\|\|)?=(?![/=\-+!*%<>&|\^~.])
+  logical-operator:
+    name: keyword.operator.logical.swift
+    match: (?<![/=\-+!*%<>&|\^~.])(!|&&|\|\|)(?![/=\-+!*%<>&|\^~.])
+  remainder-operator:
+    name: keyword.operator.remainder.swift
+    match: (?<![/=\-+!*%<>&|\^~.])\%(?![/=\-+!*%<>&|\^~.])
+  increment-decrement-operator:
+    name: keyword.operator.increment-or-decrement.swift
+    match: (?<![/=\-+!*%<>&|\^~.])(\+\+|\-\-)(?![/=\-+!*%<>&|\^~.])
+  overflow-operator:
+    name: keyword.operator.overflow.swift
+    match: (?<![/=\-+!*%<>&|\^~.])\&(\+|\-|\*|\/|%)(?![/=\-+!*%<>&|\^~.])
+  range-operator:
+    name: keyword.operator.range.swift
+    match: (?<![/=\-+!*%<>&|\^~.])\.\.(?:\.)?(?![/=\-+!*%<>&|\^~.])
+  arithmetic-operator:
+    name: keyword.operator.arithmetic.swift
+    match: (?<![/=\-+!*%<>&|\^~.])(\+|\-|\*|\/)(?![/=\-+!*%<>&|\^~.])
+  bitwise-operator:
+    name: keyword.operator.bitwise.swift
+    match: (?<![/=\-+!*%<>&|\^~.])(&|\||\^|<<|>>)(?![/=\-+!*%<>&|\^~.])
+  ternary-operator:
+    name: keyword.operator.ternary.swift
+    match: (?<=[\s(\[{,;:])(\?|:)(?=[\s)\]},;:])
+  type-casting-operator:
+    name: keyword.operator.type-casting.swift
+    match: \b(is\b|as(\?\B|\b))
+  custom-operator:
+    patterns:
+    - name: keyword.operator.custom.prefix.unary.swift
+      match: (?<=[\s(\[{,;:])([/=\-+!*%<>&|\^~.]++)(?![\s)\]},;:])
+    - name: keyword.operator.custom.postfix.unary.swift
+      match: (?<![\s(\[{,;:])([/=\-+!*%<>&|\^~.]++)(?![\s)\]},;:\.])
+    - name: keyword.operator.custom.binary.swift
+      match: (?<=[\s(\[{,;:])([/=\-+!*%<>&|\^~.]++)(?=[\s)\]},;:])
+
+
+# Literal Expressions
+  literal:
+    patterns:
+    - include: '#integer-literal'
+    - include: '#floating-point-literal'
+    - include: '#nil-literal'
+    - include: '#string-literal'
+    - include: '#special-literal'
+  integer-literal:
+    name: constant.numeric.integer.swift
+    patterns:
+    - comment: binary-literal
+      name: constant.numeric.integer.binary.swift
+      match: (\B\-|\b)(0b[01][01_]*)\b
+    - comment: octal-literal
+      name: constant.numeric.integer.octal.swift
+      match: (\B\-|\b)(0o[0-7][0-7_]*)\b
+    - comment: decimal-literal
+      name: constant.numeric.integer.decimal.swift
+      match: (\B\-|\b)([0-9][0-9_]*)\b
+    - comment: hexadecimal-literal
+      name: constant.numeric.integer.hexadecimal.swift
+      match: (\B\-|\b)(0x\h[\h_]*)\b
+  floating-point-literal:
+    name: constant.numeric.floating-point.swift
+    patterns:
+    - comment: floating-point-literal -> (decimal-literal)(decimal-fraction)?(decimal-exponent)?
+      match: \b([0-9][0-9_]*)(\.([0-9][0-9_]*))?([eE][+\-]?([0-9][0-9_]*))?\b
+    - comment: floating-point-literal -> (hexadecimal-literal)(hexadecimal-fraction)?(hexadecimal-exponent)
+      match: \b(0x\h[\h_]*)(\.(0x\h[\h_]*))?([pP][+\-]?(0x\h[\h_]*))\b
+  nil-literal:
+    comment: nil-literal
+    name: constant.nil.swift
+    match: \bnil\b
+  string-literal:
+    name: meta.literal.string.swift
+    begin: \"
+    end: \"
+    beginCaptures:
+      '0': { name: string.quoted.double.swift }
+    endCaptures:
+      '0': { name: string.quoted.double.swift }
+    patterns:
+    - name: constant.character.escape.swift
+      match: \\([0tnr\"\'\\]|x\h{2}|u\h{4}|U\h{8})
+    - contentName: meta.expression.swift
+      begin: (\\\()
+      end: (\))
+      beginCaptures:
+        '1': { name: support.punctuation.expression.begin.swift }
+      endCaptures:
+        '1': { name: support.punctuation.expression.end.swift }
+      patterns:
+      - include: source.swift
+    - name: invalid.illegal.swift
+      match: (\"|\\)
+    - name: string.quoted.double.swift
+      match: (.)
+  special-literal:
+    name: keyword.other.literal.swift
+    match: \b__(FILE|LINE|COLUMN|FUNCTION)__\b
+
+
+# Primitive values
+  boolean:
+    name: keyword.constant.boolean.swift
+    match: \b(true|false)\b
+
+
+# Type names
+  type:
+    comment: type
+    patterns:
+    - include: '#primitive-type'
+    - include: '#integer-type'
+    - include: '#collection-type'
+    - include: '#optional-type'
+    - include: '#protocol-composition-type'
+  primitive-type:
+    comment: Primitive types
+    name: support.type.swift
+    match: \b(Int|Float|Double|String|Bool|Character|Void)\b
+  integer-type:
+    comment: Int types
+    name: support.type.swift
+    match: \bU?Int(8|16|32|64)?\b
+  collection-type:
+    comment: Collection types
+    patterns:
+    - include: '#array-type'
+    - include: '#dictionary-type'
+    - name: support.type.swift
+      match: \b(Array|Dictionary)\b
+  array-type:
+    name: meta.array.swift
+    begin: \b(Array)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.array.swift }
+      '2': { name: punctuation.array.begin.swift }
+    endCaptures:
+      '1': {name: punctuation.array.end.swift}
+    patterns:
+      - include: $self
+  dictionary-type:
+    name: meta.dictionary.swift
+    begin: \b(Dictionary)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.dictionary.swift }
+      '2': { name: punctuation.dictionary.begin.swift }
+    endCaptures:
+      '1': {name: punctuation.dictionary.end.swift}
+    patterns:
+      - include: $self
+  optional-type:
+    name: meta.optional.swift
+    match: \b(Optional)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.optional.swift }
+      '2': { name: punctuation.optional.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.optional.end.swift }
+    patterns:
+      - include: $self
+  protocol-composition-type:
+    name: meta.protocol.swift
+    match: \b(protocol)(<)
+    end: (>)
+    beginCaptures:
+      '1': { name: support.type.protocol.swift }
+      '2': { name: punctuation.protocol.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.protocol.end.swift }
+    patterns:
+      - include: $self
+
+# Attributes
+  attribute:
+    comment: attribute
+    name: meta.attribute.swift
+    patterns:
+    - begin: ((@)(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B))(\()
+      end: \)
+      contentName: meta.attribute.arguments.swift
+      beginCaptures:
+        '1': { name: storage.modifier.attribute.swift }
+        '2': { name: punctuation.definition.attribute.swift }
+        '3': { name: punctuation.definition.attribute-arguments.begin.swift }
+      endCaptures:
+        '0': { name: punctuation.definition.attribute-arguments.end.swift }
+      patterns:
+      - include: $self
+    - match: ((@)(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B))
+      captures:
+        '1': { name: storage.modifier.attribute.swift }
+        '2': { name: punctuation.definition.attribute.swift }
+
+
+# Declarations
+  declaration:
+    comment: declaration
+    name: meta.declaration.swift
+    patterns:
+    - include: '#import-declaration'
+    - include: '#function-declaration'
+
+# Import Declaration
+  import-declaration:
+    comment: import-declaration
+    name: meta.import.swift
+    match: \b(import)\s+(?:(typealias|struct|class|enum|protocol|var|func)\s+)?((?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+)(?:\.(?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+))*)
+    captures:
+      '1': { name: keyword.other.import.swift }
+      '2': { name: storage.modifier.swift }
+      '3': { name: support.type.module.import.swift }
+
+# Function Declaration
+  function-declaration:
+    comment: function-declaration
+    name: meta.function-declaration.swift
+    begin: \b(func)\s+(\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+)\s*(?=\(|<)
+    end: (?<=\})
+    beginCaptures:
+      '1': { name: storage.type.function.swift }
+      '2': { name: entity.type.function.swift }
+    patterns:
+    - include: '#generic-parameter-clause'
+    - include: '#parameter-clause'
+    - include: '#function-result'
+    - include: '#function-body'
+  parameter-clause:
+    comment: parameter-clause
+    name: meta.parameter-clause.swift
+    begin: (\()
+    end: (\))
+    beginCaptures:
+      '1': { name: punctuation.definition.function-arguments.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.definition.function-arguments.end.swift }
+    patterns:
+    - include: $self
+  function-result:
+    comment: function-result
+    name: meta.function-result.swift
+    begin: (?<![/=\-+!*%<>&|\^~.])(\->)(?![/=\-+!*%<>&|\^~.])\s*
+    end: \s*(?=\{)
+    beginCaptures:
+      '1': { name: keyword.operator.function-result.swift }
+    patterns:
+    - include: '#type'
+  function-body:
+    comment: function-body
+    name: meta.function-body.swift
+    patterns:
+    - include: '#code-block'
+
+
+  generic-parameter-clause:
+    comment: generic-parameter-clause
+    name: meta.generic-parameter-clause.swift
+    begin: (<)
+    end: (>)
+    beginCaptures:
+      '1': { name: punctuation.definition.generic-parameter-clause.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.definition.generic-parameter-clause.end.swift }
+    patterns:
+    - include: $self
+
+  code-block:
+    comment: code-block
+    begin: (\{)
+    end: (\})
+    beginCaptures:
+      '1': { name: punctuation.definition.code-block.begin.swift }
+    endCaptures:
+      '1': { name: punctuation.definition.code-block.end.swift }
+    patterns:
+    - include: $self
+
+
+# Comments
+  comment:
+    comment: All comment types
+    patterns:
+    - include: '#documentation-comment'
+    - include: '#block-comment'
+    - include: '#in-line-comment'
+  documentation-comment:
+    comment: Documentation comment
+    name: comment.block.documentation.swift
+    begin: /\*\*
+    end: \*/
+    beginCaptures:
+      '0': { name: punctuation.definition.comment.block.documentation.begin.swift }
+    endCaptures:
+      '0': { name: punctuation.definition.comment.block.documentation.end.swift }
+  block-comment:
+    comment: Block comment
+    name: comment.block.swift
+    begin: /\*
+    end: \*/
+    beginCaptures:
+      '0': { name: punctuation.definition.comment.block.begin.swift }
+    endCaptures:
+      '0': { name: punctuation.definition.comment.block.end.swift }
+  in-line-comment:
+    comment: In-line comment
+    name: comment.line.double-slash.swift
+    match: (//).*
+    captures:
+      '1': { name: punctuation.definition.comment.line.double-slash.swift }
+
+  shebang-line:
+    comment: Shebang line
+    name: comment.line.shebang.swift
+    match: ^(#!).*$
+    captures:
+      '1': { name: punctuation.definition.comment.line.shebang.swift }
+
+...

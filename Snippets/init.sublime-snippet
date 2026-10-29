@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+init(${1:parameters}) {
+	$2
+}
+]]></content>
+	<tabTrigger>init</tabTrigger>
+	<scope>source.swift</scope>
+	<description>init(...) {...}</description>
+</snippet>

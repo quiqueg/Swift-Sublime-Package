@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+static var ${1:name}
+]]></content>
+	<tabTrigger>sv</tabTrigger>
+	<scope>source.swift</scope>
+	<description>static var ...</description>
+</snippet>

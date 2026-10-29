@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+#!/usr/bin/env xcrun swift
+$0
+]]></content>
+	<tabTrigger>swift</tabTrigger>
+	<scope>source.swift</scope>
+	<description>#!/usr/bin/env xcrun swift</description>
+</snippet>

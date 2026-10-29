@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+if ${1:condition} {
+	$2
+} else {
+	$3
+}
+]]></content>
+	<tabTrigger>ifelse</tabTrigger>
+	<scope>source.swift</scope>
+	<description>if ... else ...</description>
+</snippet>

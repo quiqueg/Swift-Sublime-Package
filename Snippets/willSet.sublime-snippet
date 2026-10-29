@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+willSet {
+	$1
+}
+]]></content>
+	<tabTrigger>willSet</tabTrigger>
+	<scope>source.swift</scope>
+	<description>willSet {...}</description>
+</snippet>

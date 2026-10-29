@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+Dictionary<${1:KeyType}, ${2:ValueType}>
+]]></content>
+	<tabTrigger>Dictionary</tabTrigger>
+	<scope>source.swift</scope>
+</snippet>

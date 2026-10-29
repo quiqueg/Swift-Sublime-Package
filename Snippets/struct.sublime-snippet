@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+struct ${1:name} {
+	$2
+}
+]]></content>
+	<tabTrigger>struct</tabTrigger>
+	<scope>source.swift</scope>
+	<description>struct ...</description>
+</snippet>

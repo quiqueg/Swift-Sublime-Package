@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+class var ${1:name}
+]]></content>
+	<tabTrigger>cv</tabTrigger>
+	<scope>source.swift</scope>
+	<description>class var ...</description>
+</snippet>

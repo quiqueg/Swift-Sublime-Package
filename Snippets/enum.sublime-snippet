@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+enum ${1:name} {
+	$2
+}
+]]></content>
+	<tabTrigger>enum</tabTrigger>
+	<scope>source.swift</scope>
+</snippet>

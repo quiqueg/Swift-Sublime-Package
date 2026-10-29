@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+set {
+	$1
+}
+]]></content>
+	<tabTrigger>set</tabTrigger>
+	<scope>source.swift</scope>
+	<description>set {...}</description>
+</snippet>

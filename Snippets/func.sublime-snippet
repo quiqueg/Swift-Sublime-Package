@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+func ${1:name}(${2:arguments}) -> ${3:ReturnType} {
+	$4
+}
+]]></content>
+	<tabTrigger>func</tabTrigger>
+	<scope>source.swift</scope>
+</snippet>

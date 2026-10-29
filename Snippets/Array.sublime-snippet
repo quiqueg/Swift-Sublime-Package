@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+Array<${1:Type}>
+]]></content>
+	<tabTrigger>Array</tabTrigger>
+	<scope>source.swift</scope>
+</snippet>
